@@ -779,13 +779,69 @@ body.no-scroll { overflow: hidden; }
    Ollama chatbot widget (bottom-left)
    ============================================================ */
 .cbot { position: fixed; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 130; }
+/* Massie's face, not a speech bubble. Bigger than a standard fab (76px) so the
+   character actually reads at a glance, with a ring and a stacked shadow that
+   lift her off the page — a flat circle looked like a stray sticker. */
 .cbot__fab {
-  width: 58px; height: 58px; border-radius: 50%; border: none; cursor: pointer;
-  background: var(--oxblood); color: #fff; box-shadow: var(--shadow-md);
-  display: grid; place-items: center; transition: transform .2s var(--ease), background .2s;
+  position: relative;
+  width: 76px; height: 76px; border-radius: 50%; border: none; cursor: pointer;
+  padding: 0; background: var(--oxblood); color: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.18), 0 0 0 3px rgba(255,255,255,.92);
+  display: grid; place-items: center; overflow: visible;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.cbot__avatar {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  object-position: center 42%; display: block;
 }
 .cbot__fab svg { width: 26px; height: 26px; }
-.cbot__fab:hover { transform: translateY(-2px); background: var(--oxblood-dark); }
+.cbot__fab:hover, .cbot__fab:focus-visible {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 16px 30px rgba(0,0,0,.32), 0 3px 8px rgba(0,0,0,.2), 0 0 0 3px #fff;
+}
+.cbot__fab:active { transform: translateY(-1px) scale(1.01); }
+
+/* A slow halo that says "this is tappable" without the jitter of a bouncing
+   badge. Sits behind the face and never intercepts a click. */
+.cbot__fab-pulse {
+  position: absolute; inset: -6px; border-radius: 50%; pointer-events: none;
+  border: 2px solid var(--oxblood); opacity: 0;
+  animation: cbotPulse 2.8s var(--ease) infinite;
+}
+@keyframes cbotPulse {
+  0%   { transform: scale(.9);  opacity: .55; }
+  70%  { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+
+/* Standing label, so a first-time visitor knows who she is before clicking. */
+.cbot__nudge {
+  position: absolute; left: 84px; bottom: 22px; white-space: nowrap;
+  background: #fff; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 999px; padding: .38rem .8rem;
+  font-family: var(--font-head); font-weight: 700; font-size: .78rem;
+  box-shadow: var(--shadow-md); pointer-events: none;
+  transition: opacity .2s var(--ease), transform .2s var(--ease);
+}
+.cbot.is-open .cbot__nudge { opacity: 0; transform: translateX(-6px); }
+
+/* The panel header wears the same face as the button, so opening the chat
+   clearly continues from the thing that was clicked. */
+.cbot__mark-img {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  object-fit: cover; object-position: center 42%;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbot__fab-pulse { animation: none; }
+  .cbot__fab, .cbot__fab:hover { transition: none; transform: none; }
+}
+
+@media (max-width: 480px) {
+  .cbot__fab { width: 66px; height: 66px; }
+  .cbot__nudge { display: none; }
+}
 .cbot__panel {
   position: absolute; left: 0; bottom: 72px; width: min(92vw, 360px); height: min(72vh, 520px);
   background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);

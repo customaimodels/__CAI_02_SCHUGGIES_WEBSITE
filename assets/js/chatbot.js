@@ -1,5 +1,5 @@
 /* ============================================================
-   Schuggies-Ceilidhs — "Ask Schuggie" chatbot
+   Schuggies-Ceilidhs — "Ask Massie" chatbot
    Works OUT OF THE BOX: answers common FAQ questions from a
    built-in knowledge base (no server, no install needed).
    Optionally upgrades to a local Ollama model for free-form
@@ -9,8 +9,8 @@
   "use strict";
 
   var CONFIG = {
-    title: "Ask Schuggie",
-    greeting: "Hi, I'm Schuggie 👋 Fancy a ceilidh but not sure where to start? Ask me anything, or tap a question below.",
+    title: "Ask Massie",
+    greeting: "Hi, I'm Massie 👋 Fancy a ceilidh but not sure where to start? Ask me anything, or tap a question below.",
     // Optional: local Ollama for anything the FAQ brain can't answer.
     // Off for public/hosted demos (visitors won't have Ollama, and an HTTPS
     // page can't call local http Ollama). Flip to true for on-device use.
@@ -18,7 +18,7 @@
     endpoint: "http://localhost:11434/api/chat",
     model: "llama3.2",
     system:
-      "You are the friendly booking assistant for Schuggies-Ceilidhs, authentic Scottish ceilidh entertainment (weddings, parties, corporate), Nottingham-based, UK-wide. " +
+      "You are Massie, the friendly booking assistant for Schuggies-Ceilidhs, authentic Scottish ceilidh entertainment (weddings, parties, corporate), Nottingham-based, UK-wide. " +
       "Warm, concise (2-4 sentences), a touch of Scottish charm. Ceilidh DJ from £877, live band from £1,597, Whole of the Moon from £4,927; prices locked to 2029; every dance is called; UK-wide incl. Channel Islands; hosting since 2008, 550+ events, 220+ weddings. Phone 01332 498839, email info@schuggies-ceilidhs.co.uk. Never invent prices or availability; if unsure, suggest booking a chat."
   };
 
@@ -94,16 +94,23 @@
   var history = [{ role: "system", content: CONFIG.system }];
   var busy = false, ollamaOK = null;
 
-  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>';
+  /* The fab is Massie herself, not a generic speech bubble — a face invites a
+     question in a way an icon does not. Path is resolved from the page depth
+     so it works at root, /pages/ and /pages/blog/ alike. */
+  var DEPTH = (location.pathname.match(/\//g) || []).length - 1;
+  var AVATAR = (DEPTH > 0 ? new Array(DEPTH + 1).join("../") : "") + "assets/images/massie-avatar.webp";
+  var ICON = '<img class="cbot__avatar" src="' + AVATAR + '" alt="" width="320" height="320" loading="lazy" decoding="async">';
 
   function el(html){ var d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
 
   function build(){
     var root = el(
       '<div class="cbot">' +
-        '<button class="cbot__fab" aria-label="Open chat">' + ICON + '</button>' +
+        '<button class="cbot__fab" aria-label="Ask Massie a question">' + ICON +
+          '<span class="cbot__fab-pulse" aria-hidden="true"></span></button>' +
+        '<span class="cbot__nudge" aria-hidden="true">Ask Massie</span>' +
         '<section class="cbot__panel" role="dialog" aria-label="' + CONFIG.title + '" hidden>' +
-          '<header class="cbot__head"><span class="cbot__mark">SC</span>' +
+          '<header class="cbot__head"><img class="cbot__mark-img" src="' + AVATAR + '" alt="" width="320" height="320">' +
             '<div><strong>' + CONFIG.title + '</strong><small>Ceilidh helper</small></div>' +
             '<button class="cbot__close" aria-label="Close chat">✕</button></header>' +
           '<div class="cbot__log" aria-live="polite"></div>' +
@@ -122,12 +129,12 @@
 
     function isOpen(){ return !panel.hidden && panel.classList.contains("is-open"); }
     function open(){
-      panel.hidden = false; document.body.classList.add("cbot-open");
+      panel.hidden = false; document.body.classList.add("cbot-open"); root.classList.add("is-open");
       requestAnimationFrame(function(){ panel.classList.add("is-open"); });
       if (!opened){ opened = true; add("bot", CONFIG.greeting); renderChips(); }
       setTimeout(function(){ input.focus(); }, 200);
     }
-    function close(){ panel.classList.remove("is-open"); document.body.classList.remove("cbot-open");
+    function close(){ panel.classList.remove("is-open"); root.classList.remove("is-open"); document.body.classList.remove("cbot-open");
       setTimeout(function(){ panel.hidden = true; }, 250); }
     fab.addEventListener("click", function(){ isOpen() ? close() : open(); });
     root.querySelector(".cbot__close").addEventListener("click", close);
