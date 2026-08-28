@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Images &amp; Frames | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { border:1px solid var(--line); border-radius: var(--radius);
+               padding:1.5rem; margin:.8rem 0 0; background:#fff; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Images &amp; frames</h1>
+<p class="lead">Four shapes. Pick one, crop your photo to match, done.</p>
+
+<div class="docs-note">
+  <b>Crop the photo to fit the frame — never the other way round.</b> Putting a
+  wide photo in a tall frame doesn't stretch it, but it does chop the sides off,
+  and that's usually where the people are.
+</div>
+
+<hr class="docs-rule">
+
+<h2>The four shapes</h2>
+
+<h3>Tall — 4:5</h3>
+<p class="muted">Best beside a block of text. Export at 1200 × 1500.</p>
+<div class="docs-demo" style="max-width:340px">
+  <div class="imgframe imgframe--tall">
+    <img src="../../assets/images/wedding-barn-warm.webp" width="1200" height="1500"
+         alt="A barn wedding under bunting" loading="lazy">
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;div class="imgframe imgframe--tall"&gt;
+  &lt;img src="../assets/images/wedding-barn-warm.webp"
+       width="1200" height="1500"
+       alt="A barn wedding under bunting, Schuggie calling as the floor fills"
+       loading="lazy"&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Wide — 16:10</h3>
+<p class="muted">Full-width across a column. Export at 1600 × 1000.</p>
+<div class="docs-demo">
+  <div class="imgframe imgframe--wide">
+    <img src="../../assets/images/parties-disco-crowd.webp" width="1600" height="1000"
+         alt="A packed dancefloor under disco lights" loading="lazy">
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;div class="imgframe imgframe--wide"&gt;
+  &lt;img src="../assets/images/parties-disco-crowd.webp"
+       width="1600" height="1000" alt="Describe the photo" loading="lazy"&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Square — 1:1</h3>
+<p class="muted">Portraits and detail shots. Export at 1200 × 1200.</p>
+<div class="docs-demo" style="max-width:340px">
+  <div class="imgframe imgframe--square">
+    <img src="../../assets/images/schuggie-quaich.webp" width="1200" height="1200"
+         alt="Schuggie holding a quaich" loading="lazy">
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;div class="imgframe imgframe--square"&gt;
+  &lt;img src="../assets/images/schuggie-quaich.webp"
+       width="1200" height="1200" alt="Describe the photo" loading="lazy"&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Card image — 4:3</h3>
+<p class="muted">Only inside a card. Export at 1200 × 900. See example 04.</p>
+
+<hr class="docs-rule">
+
+<h2>The four things every image needs</h2>
+<pre class="docs-code"><code>&lt;img src="../assets/images/photo.webp"   &lt;!-- 1. where the file is --&gt;
+     width="1200" height="1500"          &lt;!-- 2. its real size --&gt;
+     alt="What is happening in the photo" &lt;!-- 3. a description --&gt;
+     loading="lazy"&gt;                     &lt;!-- 4. unless it's a hero --&gt;</code></pre>
+
+<table>
+  <tr><th>What</th><th>Why it matters</th></tr>
+  <tr><td><code>src</code></td><td>The path. Count your <code>../</code> — one from
+    <code>pages/</code>, two from <code>pages/blog/</code>.</td></tr>
+  <tr><td><code>width</code> / <code>height</code></td><td>Reserves the space so
+    the page doesn't jump around as photos load. Use the file's real pixel size.</td></tr>
+  <tr><td><code>alt</code></td><td>What a blind visitor hears and Google reads.
+    Describe the scene, not the file.</td></tr>
+  <tr><td><code>loading="lazy"</code></td><td>Don't load it until the visitor
+    scrolls near it. <b>Never on a hero</b> — that would slow the first view.</td></tr>
+</table>
+
+<hr class="docs-rule">
+
+<h2>Writing alt text</h2>
+<table>
+  <tr><th>Weak</th><th>Good</th></tr>
+  <tr><td>"wedding"</td><td>"A bride throwing both arms in the air mid-celebration,
+    guests behind her"</td></tr>
+  <tr><td>"IMG_4471"</td><td>"A barn wedding under bunting, Schuggie calling as
+    the floor fills"</td></tr>
+  <tr><td>"ceilidh photo"</td><td>"Dancers mid-spin in a village hall, a kilted
+    guest laughing"</td></tr>
+</table>
+<p class="u-mt-2 muted">If the photo is purely decorative, use
+  <code>alt=""</code> — empty, but present.</p>
+
+<hr class="docs-rule">
+
+<h2>Before you add any photo</h2>
+<ol>
+  <li>Start from the biggest original in <code>_SH_data_in/</code>.</li>
+  <li>Crop it to the frame shape you're using.</li>
+  <li>Export as WebP at the size in the table above.</li>
+  <li>Name it for what it shows — <code>wedding-first-dance.webp</code>, not
+    <code>DSC_0012.webp</code>.</li>
+  <li>Put it in <code>assets/images/</code>.</li>
+</ol>
+<p class="muted">Full detail in <code>_howto/04-swap-a-photo.md</code> and
+  <code>06-images-and-media.md</code>.</p>
+
+</div>
+</body>
+</html>

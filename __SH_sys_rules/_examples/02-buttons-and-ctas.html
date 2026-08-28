@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Buttons &amp; CTAs | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { background:#fff; border:1px solid var(--line); border-radius: var(--radius);
+               padding:1.6rem; margin:.8rem 0 0; }
+  .docs-demo--dark { background: var(--ink); }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Buttons &amp; calls to action</h1>
+<p class="lead">Five button styles. Each one has a job — using the right one is
+how visitors know what you want them to do.</p>
+
+<hr class="docs-rule">
+
+<h2>The rule that matters</h2>
+<div class="docs-note">
+  <b>Green always means "Book a Chat".</b> It's the one journey you want people
+  on, so it keeps its own colour everywhere — header, menu, every page.
+  Burgundy is the general-purpose action colour. Never use green for anything
+  else, or it stops meaning anything.
+</div>
+
+<h2>1. Book a Chat — the primary journey</h2>
+<div class="docs-demo">
+  <a class="btn btn--chat" href="#">Book a Chat</a>
+</div>
+<pre class="docs-code"><code>&lt;a class="btn btn--chat"
+   href="https://calendly.com/schuggies-ceilidhs/ceilidh-chat-how-a-ceilidh-will-work-for-your-wedding"
+   target="_blank" rel="noopener"&gt;Book a Chat&lt;/a&gt;</code></pre>
+
+<h2>2. Primary — major action, when Book a Chat isn't the focus</h2>
+<div class="docs-demo">
+  <a class="btn btn--primary" href="#">Send a Message</a>
+</div>
+<pre class="docs-code"><code>&lt;a class="btn btn--primary" href="contact.html"&gt;Send a Message&lt;/a&gt;</code></pre>
+
+<h2>3. Sage — supporting action</h2>
+<div class="docs-demo">
+  <a class="btn btn--sage" href="#">Check Availability</a>
+</div>
+<pre class="docs-code"><code>&lt;a class="btn btn--sage"
+   href="https://calendly.com/schuggies-ceilidhs/private-ceilidh-check-if-im-available-for-your-big-day"
+   target="_blank" rel="noopener"&gt;Check Availability&lt;/a&gt;</code></pre>
+
+<h2>4. Ghost — quiet secondary action</h2>
+<div class="docs-demo">
+  <a class="btn btn--ghost" href="#">See more reviews</a>
+</div>
+<pre class="docs-code"><code>&lt;a class="btn btn--ghost" href="testimonials.html"&gt;See more reviews&lt;/a&gt;</code></pre>
+
+<h2>5. On a dark background</h2>
+<p class="muted">Over a photo or a dark band, use <code>btn--light</code> and
+  <code>btn--ghost btn--on-dark</code> — the normal versions disappear.</p>
+<div class="docs-demo docs-demo--dark">
+  <a class="btn btn--light" href="#">Prices &amp; Packages</a>
+  <a class="btn btn--ghost btn--on-dark" href="#">FAQs</a>
+</div>
+<pre class="docs-code"><code>&lt;a class="btn btn--light" href="prices.html"&gt;Prices &amp;amp; Packages&lt;/a&gt;
+&lt;a class="btn btn--ghost btn--on-dark" href="faqs.html"&gt;FAQs&lt;/a&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Button rows</h2>
+<p>Buttons always sit inside a <code>btn-row</code>. It handles the spacing, and
+  on a phone it arranges them two-by-two automatically.</p>
+<div class="docs-demo">
+  <div class="btn-row">
+    <a class="btn btn--chat" href="#">Book a Chat</a>
+    <a class="btn btn--sage" href="#">Check Availability</a>
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;div class="btn-row"&gt;
+  &lt;a class="btn btn--chat" href="…"&gt;Book a Chat&lt;/a&gt;
+  &lt;a class="btn btn--sage" href="…"&gt;Check Availability&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+<p>To centre them, add <code>btn-row--center</code>:</p>
+<div class="docs-demo">
+  <div class="btn-row btn-row--center">
+    <a class="btn btn--chat" href="#">Book a Chat</a>
+    <a class="btn btn--light" href="#">Contact Me</a>
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;div class="btn-row btn-row--center"&gt; … &lt;/div&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>The closing CTA strip</h2>
+<p><b>Every page ends with one of these.</b> A page that just stops is a wasted
+  visit.</p>
+<div class="docs-demo">
+  <div class="cta-strip">
+    <h2>Let's make your wedding unforgettable</h2>
+    <p>Check availability for your date and lock in a price that won't budge until 2029.</p>
+    <div class="btn-row btn-row--center">
+      <a class="btn btn--chat" href="#">Book a Chat</a>
+      <a class="btn btn--light" href="#">Contact Me</a>
+    </div>
+  </div>
+</div>
+<pre class="docs-code"><code>&lt;section class="section section--closing"&gt;&lt;div class="container"&gt;
+  &lt;div class="cta-strip reveal"&gt;
+    &lt;h2&gt;Let's make your wedding unforgettable&lt;/h2&gt;
+    &lt;p&gt;Check availability for your date and lock in a price that won't
+       budge until 2029.&lt;/p&gt;
+    &lt;div class="btn-row btn-row--center"&gt;
+      &lt;a class="btn btn--chat" href="…"&gt;Book a Chat&lt;/a&gt;
+      &lt;a class="btn btn--light" href="contact.html"&gt;Contact Me&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Things to avoid</h2>
+<ul>
+  <li><b>Three different button colours side by side.</b> Two at most, so the
+    primary one wins.</li>
+  <li><b>More than four buttons in a hero.</b> Four is already the ceiling.</li>
+  <li><b>Green for anything but Book a Chat.</b></li>
+  <li><b>Making a button smaller.</b> Every button is at least 44px tall on a
+    phone — that's fingertip size. Shrinking one makes it hard to tap.</li>
+</ul>
+
+</div>
+</body>
+</html>

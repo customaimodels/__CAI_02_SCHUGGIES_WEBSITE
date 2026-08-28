@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>FAQs, Quotes &amp; Proof | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { border:1px solid var(--line); border-radius: var(--radius);
+               overflow:hidden; margin:.8rem 0 0; background:#fff; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>FAQs, quotes &amp; proof</h1>
+
+<hr class="docs-rule">
+
+<h2>The FAQ accordion</h2>
+<p>Click a question to open its answer. Try it — this is live.</p>
+
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <h3 class="faq-group">Planning</h3>
+  <div class="acc"><button class="acc__q">What does "calling" mean?</button>
+    <div class="acc__a"><div class="acc__a-inner">
+      <p><em>Calling</em> is simply directing the dancing — I'm the person who does
+        it. Most of your guests will never have been to a ceilidh, so I guide
+        them through every dance as we go.</p>
+    </div></div></div>
+  <div class="acc"><button class="acc__q">Do we need any dance experience?</button>
+    <div class="acc__a"><div class="acc__a-inner">
+      <p>None at all. Beginners and seasoned dancers join in together — and
+        making mistakes is half the fun.</p>
+    </div></div></div>
+  <div class="acc"><button class="acc__q">How much space do we need?</button>
+    <div class="acc__a"><div class="acc__a-inner">
+      <p>Any size works — a cosy village hall, a marquee, a garden, an
+        odd-shaped hotel room or a grand castle hall.</p>
+    </div></div></div>
+</div></section></div>
+
+<pre class="docs-code"><code>&lt;h3 class="faq-group"&gt;Planning&lt;/h3&gt;
+
+&lt;div class="acc reveal"&gt;
+  &lt;button class="acc__q"&gt;What does "calling" mean?&lt;/button&gt;
+  &lt;div class="acc__a"&gt;&lt;div class="acc__a-inner"&gt;
+    &lt;p&gt;Your answer goes here.&lt;/p&gt;
+  &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="docs-note">
+  <b>Two things to get right.</b><br>
+  1. The answer needs <b>both</b> inner divs — <code>acc__a</code> and
+  <code>acc__a-inner</code>. Remove one and the open/close animation breaks.<br>
+  2. Group questions under <code>faq-group</code> headings — planning, money,
+  travel, experience. A flat list of thirty questions is unusable.
+</div>
+
+<p class="muted"><b>Remember:</b> whatever you promise in an FAQ, the chatbot
+  must say the same thing. See <code>_howto/07-update-the-chatbot.md</code>.</p>
+
+<hr class="docs-rule">
+
+<h2>A featured quote</h2>
+<p>One strong review, given room to breathe.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="quote-feature">
+    <blockquote>"Absolutely made our wedding. The floor was packed all night and
+      our guests are still talking about it!"</blockquote>
+    <cite>Barn wedding, Derbyshire</cite>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="quote-feature reveal"&gt;
+  &lt;blockquote&gt;"Absolutely made our wedding. The floor was packed all
+    night and our guests are still talking about it!"&lt;/blockquote&gt;
+  &lt;cite&gt;Barn wedding, Derbyshire&lt;/cite&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>The quote rail</h2>
+<p>Two or three shorter ones, sitting quietly beneath the featured quote.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="quote-rail">
+    <p>"Schuggie got everyone involved — even the shy ones. Professional, warm
+      and brilliant fun." <span>Birthday party, Nottingham</span></p>
+    <p>"Perfect for our corporate evening. Inclusive, energetic and genuinely
+      memorable." <span>Corporate away-day</span></p>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="quote-rail reveal"&gt;
+  &lt;p&gt;"The quote itself." &lt;span&gt;Who said it, and where&lt;/span&gt;&lt;/p&gt;
+  &lt;p&gt;"Another quote." &lt;span&gt;Corporate away-day&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="docs-note">
+  <b>Attribution matters more than you think.</b> "Barn wedding, Derbyshire"
+  is worth far more than "A happy customer" — it tells a reader this was
+  someone like them.
+</div>
+
+<hr class="docs-rule">
+
+<h2>The locked-prices pill</h2>
+<p>The one place yellow is allowed on this website.</p>
+<div class="docs-demo"><section class="section section--sage section--tight">
+  <div class="container text-center">
+    <span class="badge-note">Locked-in Prices Until 2029</span>
+    <h2 class="u-mt-2">No surprise increases. No guessing games.</h2>
+  </div>
+</section></div>
+<pre class="docs-code"><code>&lt;span class="badge-note"&gt;Locked-in Prices Until 2029&lt;/span&gt;</code></pre>
+
+</div>
+</body>
+</html>

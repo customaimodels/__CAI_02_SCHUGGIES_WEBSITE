@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Heroes | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { border:1px solid var(--line); border-radius: var(--radius);
+               overflow:hidden; margin:.8rem 0 0; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+  /* the demo hero is shrunk so it fits on this page */
+  .docs-demo .hero { min-height: 380px; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Heroes</h1>
+<p class="lead">The block at the top of a page. It has about three seconds to say
+  what this is and why it matters.</p>
+
+<hr class="docs-rule">
+
+<h2>What a hero must do</h2>
+<ol>
+  <li><b>Say who it's for</b> — the small label at the top.</li>
+  <li><b>Make one promise</b> — the headline.</li>
+  <li><b>Back it up</b> — one or two sentences.</li>
+  <li><b>Offer a next step</b> — one obvious button, plus up to three others.</li>
+</ol>
+
+<hr class="docs-rule">
+
+<h2>A page hero (live)</h2>
+<div class="docs-demo">
+  <section class="hero grain hero--short">
+    <div class="hero__media"><picture>
+      <source media="(max-width: 700px)" type="image/webp" srcset="../../assets/images/hero-parties-square.webp">
+      <source type="image/webp" srcset="../../assets/images/hero-parties-2400.webp 2400w" sizes="100vw">
+      <img class="hero__img--composed" src="../../assets/images/hero-parties-1600.jpg"
+           width="1600" height="900"
+           alt="A packed dancefloor at a party, arms in the air">
+    </picture></div>
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--sage">Birthday Parties</p>
+      <h1>The party everyone actually joins in with</h1>
+      <p class="lead">No standing at the edge with a drink. Every dance is
+        called, so your whole guest list ends up on the floor.</p>
+      <div class="btn-row">
+        <a class="btn btn--sage" href="#">Check Availability</a>
+        <a class="btn btn--light" href="#">Prices &amp; Packages</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<pre class="docs-code"><code>&lt;section class="hero grain hero--short"&gt;
+  &lt;div class="hero__media"&gt;&lt;picture&gt;
+    &lt;source media="(max-width: 700px)" type="image/webp"
+            srcset="../assets/images/hero-parties-square.webp"&gt;
+    &lt;source media="(max-width: 700px)" type="image/jpeg"
+            srcset="../assets/images/hero-parties-square.jpg"&gt;
+    &lt;source type="image/webp"
+            srcset="../assets/images/hero-parties-1600.jpg 1600w,
+                    ../assets/images/hero-parties-2400.webp 2400w"
+            sizes="100vw"&gt;
+    &lt;img class="hero__img--composed"
+         src="../assets/images/hero-parties-1600.jpg"
+         width="1600" height="900" fetchpriority="high"
+         alt="Describe what is happening in the photo"&gt;
+  &lt;/picture&gt;&lt;/div&gt;
+
+  &lt;div class="container hero__inner"&gt;
+    &lt;p class="eyebrow eyebrow--sage"&gt;Birthday Parties&lt;/p&gt;
+    &lt;h1&gt;The party everyone actually joins in with&lt;/h1&gt;
+    &lt;p class="lead"&gt;One or two sentences backing up the headline.&lt;/p&gt;
+    &lt;div class="btn-row"&gt;
+      &lt;a class="btn btn--sage" href="…"&gt;Check Availability&lt;/a&gt;
+      &lt;a class="btn btn--light" href="prices.html"&gt;Prices &amp;amp; Packages&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Why five image filenames?</h2>
+<p>Because a phone and a desktop need different pictures. The
+  <code>picture</code> block hands out:</p>
+<ul>
+  <li>a <b>square</b> crop to phones (a wide photo in a tall phone screen crops
+    the people out of it),</li>
+  <li>a <b>wide</b> one to desktops, in two sizes so big screens get the sharp
+    one and small laptops don't waste data,</li>
+  <li>a <b>JPEG</b> fallback for older browsers.</li>
+</ul>
+<p>When you swap a hero photo, change <b>all five</b>. Miss one and some
+  visitors get the old picture. Full instructions in
+  <code>_howto/04-swap-a-photo.md</code>.</p>
+
+<div class="docs-note">
+  <b>Never make the hero taller.</b> On phones it's deliberately capped at about
+  62% of screen height. Any taller and the photo gets stretched beyond its real
+  size and starts looking blocky. This is the single most common way to make the
+  site look cheap.
+</div>
+
+<hr class="docs-rule">
+
+<h2>The two hero sizes</h2>
+<table>
+  <tr><th>Class</th><th>Use for</th></tr>
+  <tr><td><code>hero</code></td><td>The home page. Full height, maximum impact.</td></tr>
+  <tr><td><code>hero hero--short</code></td><td>Every other page. Shorter, gets to the content faster.</td></tr>
+</table>
+
+<p class="u-mt-3"><code>grain</code> adds a subtle texture over the photo. Keep
+  it — it's part of the look, and it helps white text stay readable.</p>
+
+<hr class="docs-rule">
+
+<h2>Writing the headline</h2>
+<table>
+  <tr><th>Instead of</th><th>Write</th></tr>
+  <tr><td>"Welcome to Schuggies-Ceilidhs"</td><td>"The perfect mix of fun, engaging &amp; classy"</td></tr>
+  <tr><td>"Our Services"</td><td>"Fill your dancefloor from the get-go"</td></tr>
+  <tr><td>"Party Entertainment"</td><td>"The party everyone actually joins in with"</td></tr>
+</table>
+<p class="u-mt-2 muted">A headline is a promise, not a label. And keep it to one
+  or two lines on a phone — check before you settle on it.</p>
+
+</div>
+</body>
+</html>

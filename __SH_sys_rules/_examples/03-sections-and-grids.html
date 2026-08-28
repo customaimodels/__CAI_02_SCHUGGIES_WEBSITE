@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sections &amp; Grids | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { border:1px solid var(--line); border-radius: var(--radius);
+               overflow:hidden; margin:.8rem 0 0; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+  .docs-box { background: var(--sage); border-radius: var(--radius-sm); padding:1.2rem;
+              text-align:center; font-family: var(--font-head); font-weight:700; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Sections &amp; grids</h1>
+<p class="lead">How a page is built: bands down the screen, with content in
+  columns inside them.</p>
+
+<hr class="docs-rule">
+
+<h2>The basic shape of every band</h2>
+<p>Two layers, always. A <code>section</code> is the full-width stripe;
+  a <code>container</code> keeps the content from running edge to edge.</p>
+<pre class="docs-code"><code>&lt;section class="section"&gt;
+  &lt;div class="container"&gt;
+    …your content…
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+<div class="docs-note">
+  <b>Never skip the container.</b> Without it, text runs the full width of a
+  desktop screen and becomes unreadable.
+</div>
+
+<hr class="docs-rule">
+
+<h2>Section backgrounds</h2>
+<p>Alternate them down a page — light, then something stronger, then light again.
+  Never wall-to-wall colour.</p>
+
+<div class="docs-demo">
+  <section class="section section--tight"><div class="container">
+    <h3 class="u-m0">.section</h3><p class="u-m0 muted">The default. Plain ivory.</p>
+  </div></section>
+  <section class="section section--sage section--tight"><div class="container">
+    <h3 class="u-m0">.section--sage</h3><p class="u-m0">Soft green. For friendly, reassuring content.</p>
+  </div></section>
+  <section class="section section--paper2 section--tight"><div class="container">
+    <h3 class="u-m0">.section--paper2</h3><p class="u-m0 muted">A subtle shift from the default.</p>
+  </div></section>
+  <section class="section section--ink section--tight"><div class="container">
+    <h3 class="u-m0" style="color:#fff">.section--ink</h3><p class="u-m0" style="color:#ccc">Dark. Use sparingly — short and purposeful.</p>
+  </div></section>
+</div>
+<pre class="docs-code"><code>&lt;section class="section"&gt;              &lt;!-- plain ivory --&gt;
+&lt;section class="section section--sage"&gt;    &lt;!-- soft green --&gt;
+&lt;section class="section section--paper2"&gt;  &lt;!-- subtle shift --&gt;
+&lt;section class="section section--ink"&gt;     &lt;!-- dark band --&gt;
+&lt;section class="section section--closing"&gt; &lt;!-- final CTA --&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>A section heading block</h2>
+<p>The house pattern: small label, heading, one strong sentence. In that order.</p>
+<div class="docs-demo">
+  <section class="section section--tight"><div class="container">
+    <div class="text-center section__intro">
+      <p class="eyebrow">Options</p>
+      <h2>Make it yours</h2>
+    </div>
+  </div></section>
+</div>
+<pre class="docs-code"><code>&lt;div class="text-center reveal section__intro"&gt;
+  &lt;p class="eyebrow"&gt;Options&lt;/p&gt;
+  &lt;h2&gt;Make it yours&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Columns</h2>
+<p>Everything starts as one column on a phone and opens out on bigger screens.
+  You don't have to do anything for that — it's automatic.</p>
+
+<h3>Two columns (from tablet width)</h3>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="grid grid-2">
+    <div class="docs-box">One</div>
+    <div class="docs-box">Two</div>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="grid grid-2"&gt;
+  &lt;div&gt;First column&lt;/div&gt;
+  &lt;div&gt;Second column&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Three columns (from desktop width)</h3>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="grid grid-3">
+    <div class="docs-box">One</div>
+    <div class="docs-box">Two</div>
+    <div class="docs-box">Three</div>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="grid grid-3"&gt;
+  &lt;div&gt;…&lt;/div&gt; &lt;div&gt;…&lt;/div&gt; &lt;div&gt;…&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<div class="docs-note">
+  <b>Three or six items look best in a three-column grid.</b> Four or five leave
+  an awkward gap on the last row.
+</div>
+
+<hr class="docs-rule">
+
+<h2>Text beside a photo</h2>
+<p>The workhorse layout. <code>split</code> puts two things side by side on
+  desktop and stacks them on a phone.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container split">
+  <div>
+    <p class="eyebrow">Your day, done right</p>
+    <h3>Fill your dancefloor from the get-go</h3>
+    <p class="u-m0">Every dance is called clearly and simply, so nobody needs
+      prior knowledge — just the willingness to join in.</p>
+  </div>
+  <div><div class="imgframe imgframe--wide" style="background:var(--sage-dark)"></div></div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;section class="section"&gt;
+  &lt;div class="container split"&gt;
+    &lt;div class="reveal"&gt;
+      &lt;p class="eyebrow"&gt;Your day, done right&lt;/p&gt;
+      &lt;h2&gt;Fill your dancefloor from the get-go&lt;/h2&gt;
+      &lt;p class="lead"&gt;The strongest sentence.&lt;/p&gt;
+      &lt;p&gt;A supporting paragraph.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="reveal"&gt;
+      &lt;div class="imgframe imgframe--tall"&gt;
+        &lt;img src="../assets/images/wedding-barn-warm.webp"
+             width="1200" height="1500" alt="Describe the photo"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Narrower containers, for reading</h2>
+<p>Long text needs short lines. Swap the container:</p>
+<pre class="docs-code"><code>&lt;div class="container container--reading"&gt;  &lt;!-- blog posts, guides --&gt;
+&lt;div class="container container--narrow"&gt;   &lt;!-- a bit narrower than default --&gt;
+&lt;div class="container container--tight"&gt;    &lt;!-- short centred statements --&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>What is <code>reveal</code>?</h2>
+<p>Adding <code>class="reveal"</code> makes a block fade gently into view as the
+  visitor scrolls to it. Put it on the big blocks — a column, a card, a section
+  intro — not on every paragraph.</p>
+
+</div>
+</body>
+</html>

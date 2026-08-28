@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cards, Features &amp; Steps | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-demo { border:1px solid var(--line); border-radius: var(--radius);
+               overflow:hidden; margin:.8rem 0 0; background:#fff; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2.4rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Cards, features &amp; steps</h1>
+<p class="lead">Four ways to present a set of short points. Pick by what the
+  content actually is — they aren't interchangeable.</p>
+
+<div class="docs-note">
+  <b>Which one?</b><br>
+  <b>Feature tiles</b> — short selling points, no order.<br>
+  <b>Cards</b> — things you can click through to.<br>
+  <b>Steps</b> — a process, in order.<br>
+  <b>Fact list</b> — practical details someone needs before booking.
+</div>
+
+<hr class="docs-rule">
+
+<h2>1. Feature tiles</h2>
+<p>Six short selling points. The tick mark appears automatically.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="grid grid-3">
+    <div class="feature"><div class="feature__icon"></div>
+      <div><h3>Ceilidh first dance</h3><p>Turn first-dance nerves into a joyful, guest-filled moment.</p></div></div>
+    <div class="feature"><div class="feature__icon"></div>
+      <div><h3>DJ or live band</h3><p>Solo ceilidh DJ or a full live band — sizes to suit your space.</p></div></div>
+    <div class="feature"><div class="feature__icon"></div>
+      <div><h3>Every dance called</h3><p>No experience needed. I walk everyone through each dance.</p></div></div>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="grid grid-3 u-mt-4"&gt;
+  &lt;div class="feature reveal"&gt;
+    &lt;div class="feature__icon"&gt;&lt;/div&gt;
+    &lt;div&gt;
+      &lt;h3&gt;Ceilidh first dance&lt;/h3&gt;
+      &lt;p&gt;Turn first-dance nerves into a joyful, guest-filled moment.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  … repeat for each feature …
+&lt;/div&gt;</code></pre>
+<p class="muted"><b>Keep it to one sentence each.</b> Feature tiles are for
+  scanning, not reading. And leave <code>feature__icon</code> empty — the tick
+  is drawn by the stylesheet.</p>
+
+<hr class="docs-rule">
+
+<h2>2. Cards</h2>
+<p>For things with a bit more to say, usually with somewhere to click.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="grid grid-2">
+    <article class="card"><div class="card__body">
+      <span class="card__tag">Free guide</span>
+      <h3>The Wedding Ceilidh Planner</h3>
+      <p>Everything to think about before booking your evening entertainment.</p>
+      <a class="btn btn--ghost u-mt-2" href="#">Download</a>
+    </div></article>
+    <article class="card"><div class="card__body">
+      <span class="card__tag">Free guide</span>
+      <h3>Timings That Actually Work</h3>
+      <p>When to start, how long to run, and when to feed everyone.</p>
+      <a class="btn btn--ghost u-mt-2" href="#">Download</a>
+    </div></article>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;article class="card"&gt;
+  &lt;div class="card__body"&gt;
+    &lt;span class="card__tag"&gt;Free guide&lt;/span&gt;
+    &lt;h3&gt;The Wedding Ceilidh Planner&lt;/h3&gt;
+    &lt;p&gt;Everything to think about before booking.&lt;/p&gt;
+    &lt;a class="btn btn--ghost u-mt-2" href="…"&gt;Download&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+
+<p>To put a photo at the top of a card:</p>
+<pre class="docs-code"><code>&lt;article class="card"&gt;
+  &lt;div class="card__media"&gt;
+    &lt;img src="../assets/images/your-photo.webp" width="1200" height="900"
+         alt="Describe the photo" loading="lazy"&gt;
+  &lt;/div&gt;
+  &lt;div class="card__body"&gt;
+    &lt;h3&gt;Title&lt;/h3&gt;
+    &lt;p&gt;Text.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>3. Numbered steps</h2>
+<p>For a process. The numbers are drawn for you — don't type them into the text.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <ol class="steps">
+    <li class="step"><span class="step__num">1</span>
+      <div><h3>Get in touch</h3><p>Tell me your date and venue — or just your rough plans.</p></div></li>
+    <li class="step"><span class="step__num">2</span>
+      <div><h3>Have a chat</h3><p>Twenty minutes, both of you ideally. It isn't a sales call.</p></div></li>
+    <li class="step"><span class="step__num">3</span>
+      <div><h3>Lock it in</h3><p>Your price is fixed from that moment. No surprises.</p></div></li>
+  </ol>
+</div></section></div>
+<pre class="docs-code"><code>&lt;ol class="steps reveal"&gt;
+  &lt;li class="step"&gt;
+    &lt;span class="step__num"&gt;1&lt;/span&gt;
+    &lt;div&gt;
+      &lt;h3&gt;Get in touch&lt;/h3&gt;
+      &lt;p&gt;Tell me your date and venue.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  … 2, 3 …
+&lt;/ol&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>4. Fact list</h2>
+<p>Practical details. Label on one side, answer on the other.</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <div class="fact-list">
+    <div class="fact-detail"><span class="fact-label">Travel</span>
+      <span>East Midlands (NG, LE, DE) included. Beyond that, £0.55/mile plus £20/hour travel time.</span></div>
+    <div class="fact-detail"><span class="fact-label">Space needed</span>
+      <span>Any size works — village hall, marquee, garden or castle hall.</span></div>
+    <div class="fact-detail"><span class="fact-label">Sound limits</span>
+      <span>No problem. Ceilidhs peak around 85 dB, and bands can play fully acoustic.</span></div>
+  </div>
+</div></section></div>
+<pre class="docs-code"><code>&lt;div class="fact-list reveal"&gt;
+  &lt;div class="fact-detail"&gt;
+    &lt;span class="fact-label"&gt;Travel&lt;/span&gt;
+    &lt;span&gt;East Midlands (NG, LE, DE) included.&lt;/span&gt;
+  &lt;/div&gt;
+  … repeat …
+&lt;/div&gt;</code></pre>
+
+<hr class="docs-rule">
+
+<h2>Tick lists</h2>
+<p>For "what's included" lists:</p>
+<div class="docs-demo"><section class="section section--tight"><div class="container">
+  <ul class="check-list">
+    <li>PA system and microphone for speeches</li>
+    <li>Every dance called, start to finish</li>
+    <li>Music between sets</li>
+    <li>Full public liability insurance and PAT-tested gear</li>
+  </ul>
+</div></section></div>
+<pre class="docs-code"><code>&lt;ul class="check-list"&gt;
+  &lt;li&gt;PA system and microphone for speeches&lt;/li&gt;
+  &lt;li&gt;Every dance called, start to finish&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+</div>
+</body>
+</html>
