@@ -29,6 +29,8 @@ __SH_sys_rules/
 ├── 10-layout-templates.md ······· how each type of page is structured
 ├── 11-review-checklists.md ······ the full review passes
 ├── 12-mobile-optimization.md ···· the phone & tablet playbook
+├── 13-seo-and-search.md ········· being found on Google — with the current audit
+├── 14-hard-rules.md ············· ⛔ the things that must never be done
 │
 ├── _howto/ ······················ ⭐ step-by-step recipes — start here for jobs
 │   ├── 01-add-a-new-page.md
@@ -39,7 +41,8 @@ __SH_sys_rules/
 │   ├── 06-change-the-menu.md
 │   ├── 07-update-the-chatbot.md
 │   ├── 08-deploy-a-change.md ···· read before your first deploy
-│   └── 09-when-something-breaks.md
+│   ├── 09-when-something-breaks.md
+│   └── 10-build-a-page-end-to-end.md ⭐ one full job, every keystroke
 │
 ├── _templates/ ·················· copy these to start a new page
 │   ├── page-service.html ········ a page that sells something
@@ -49,6 +52,7 @@ __SH_sys_rules/
 │
 ├── _examples/ ··················· ⭐ open in a browser — see every component live
 │   ├── index.html ··············· start here
+│   ├── 07-anatomy-of-a-page.html  ⭐ the six pieces every page is made of
 │   ├── 01-heroes.html
 │   ├── 02-buttons-and-ctas.html
 │   ├── 03-sections-and-grids.html
@@ -57,16 +61,20 @@ __SH_sys_rules/
 │   └── 06-faq-and-quotes.html
 │
 ├── _reference/ ·················· look-up sheets
-│   ├── file-map.md ·············· "which file do I edit to change X?"
-│   ├── tokens.md ················ every colour and size, by name
-│   ├── class-inventory.md ······· every class, grouped by job
-│   └── breakpoints.md ··········· where the layout changes
+│   ├── facts-sheet.md ·········· ⭐ every number and claim, in one table
+│   ├── copy-bank.md ············ ⭐ approved headlines, CTAs, objection answers
+│   ├── file-map.md ············· "which file do I edit to change X?"
+│   ├── photo-brief.md ·········· hand this to your photographer
+│   ├── tokens.md ··············· every colour and size, by name
+│   ├── class-inventory.md ······ every class, grouped by job
+│   └── breakpoints.md ·········· where the layout changes
 │
 └── _checklists/ ················· tick before you ship
     ├── phone-qa.md ·············· two minutes, before every deploy
     ├── new-page.md
     ├── pre-deploy.md
-    └── post-deploy.md
+    ├── post-deploy.md
+    └── emergency.md ············ 🚨 the live site is broken
 ```
 
 ---
@@ -79,9 +87,13 @@ Nine recipes covering everything that routinely comes up.
 **"I want to see what's available."** → `_examples/index.html`
 Open it in a browser. Every component, shown live, with copy-paste code.
 
-**"I want to understand the rules."** → the numbered files, `01` to `12`
+**"I want to understand the rules."** → the numbered files, `01` to `14`
 The reasoning behind everything. Read when curious, or hand to a developer
-before they touch the site.
+before they touch the site. **`14-hard-rules.md` is the one to read first** —
+it's the short list of things that have actually broken this site before.
+
+**"Something's on fire."** → `_checklists/emergency.md`
+First line: `git revert HEAD && git push`. Nothing here is unrecoverable.
 
 ---
 
@@ -94,8 +106,9 @@ before they touch the site.
 3. **Change the look, roll the number.** Edited CSS or JS? Bump `?b=` on every
    page, or visitors keep seeing the old version for hours.
 4. **Check it at 390px.** Most visitors are on a phone. `_checklists/phone-qa.md`.
-5. **Keep the facts aligned.** A price appears in five places. Change all five,
-   or the chatbot ends up contradicting the price page.
+5. **Keep the facts aligned.** A price appears in five places — two of them
+   inside the chatbot. Change all five, or the bot ends up contradicting the
+   price page. `_reference/facts-sheet.md` lists every one.
 
 ---
 
@@ -108,6 +121,8 @@ before they touch the site.
 | Price lock | 2029 |
 | Packages from | £877 DJ · £1,597 band · £4,927 Whole of the Moon |
 | Guide-price area | NG, LE, DE postcodes |
+| Every number & claim | `_reference/facts-sheet.md` |
+| Approved wording | `_reference/copy-bank.md` |
 | Live site | schuggies.caitryapps.com |
 | Run it locally | `python3 -m http.server 8177` |
 | Phone preview | `localhost:8177/_phone.html?p=index.html` |

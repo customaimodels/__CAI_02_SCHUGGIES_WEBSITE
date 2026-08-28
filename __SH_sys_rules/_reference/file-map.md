@@ -3,19 +3,19 @@
 | I want to change… | Edit this | Recipe |
 |---|---|---|
 | Words on a page | that page's `.html` file | — |
-| My phone number, email, address | `assets/js/main.js` → `SITE` | `_howto/05` |
-| WhatsApp number | `assets/js/main.js` → `SITE.whatsapp` | `_howto/05` |
-| Calendly booking links | `assets/js/main.js` → `SITE` | `_howto/05` |
-| Social media links | `assets/js/main.js` → `SITE.social` | `_howto/05` |
-| The menu | `assets/js/main.js` → `NAV` | `_howto/06` |
-| Footer links | `assets/js/main.js` → `buildFooter()` | `_howto/06` |
+| My phone number, email, address | `assets/js/main.js` → `SITE` | `_howto/05-change-contact-details.md` |
+| WhatsApp number | `assets/js/main.js` → `SITE.whatsapp` | `_howto/05-change-contact-details.md` |
+| Calendly booking links | `assets/js/main.js` → `SITE` | `_howto/05-change-contact-details.md` |
+| Social media links | `assets/js/main.js` → `SITE.social` | `_howto/05-change-contact-details.md` |
+| The menu | `assets/js/main.js` → `NAV` | `_howto/06-change-the-menu.md` |
+| Footer links | `assets/js/main.js` → `buildFooter()` | `_howto/06-change-the-menu.md` |
 | The top bar message | `assets/js/main.js` → `buildHeader()` | — |
-| What the chatbot says | `assets/js/chatbot.js` | `_howto/07` |
-| Prices | 5 files — see the recipe | `_howto/03` |
-| A photo | the page + `assets/images/` | `_howto/04` |
+| What the chatbot says | `assets/js/chatbot.js` | `_howto/07-update-the-chatbot.md` |
+| Prices | 5 files — see the recipe | `_howto/03-change-a-price.md` |
+| A photo | the page + `assets/images/` | `_howto/04-swap-a-photo.md` |
 | Colours, fonts, spacing, any styling | `assets/css/styles.css` | ⚠️ developer job |
-| Newsletter signup provider | `assets/js/main.js` → `SITE.newsletterAction` | `_howto/05` |
-| Amazon affiliate link | `assets/js/main.js` → `SITE.amazonAffiliate` | `_howto/05` |
+| Newsletter signup provider | `assets/js/main.js` → `SITE.newsletterAction` | `_howto/05-change-contact-details.md` |
+| Amazon affiliate link | `assets/js/main.js` → `SITE.amazonAffiliate` | `_howto/05-change-contact-details.md` |
 
 ---
 

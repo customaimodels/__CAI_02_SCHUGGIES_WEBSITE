@@ -53,6 +53,12 @@ check.
 
 | I want to… | Go to |
 |---|---|
+| **See how a page is built** | `_examples/07-anatomy-of-a-page.html` |
+| **Follow one whole job start to finish** | `_howto/10-build-a-page-end-to-end.md` |
+| **Know what I must never do** | `14-hard-rules.md` |
+| **Look up a price, a number, a claim** | `_reference/facts-sheet.md` |
+| **Find the right words** | `_reference/copy-bank.md` |
+| **Fix a broken live site, now** | `_checklists/emergency.md` |
 | Understand a word I don't know | `00-glossary.md` |
 | Add a new page | `_howto/01-add-a-new-page.md` |
 | Write a new blog post | `_howto/02-add-a-blog-post.md` |
@@ -67,8 +73,10 @@ check.
 | Start a new page from scratch | `_templates/` |
 | Look up a colour or a class name | `_reference/` |
 | Tick off before going live | `_checklists/` |
+| Get found on Google | `13-seo-and-search.md` |
+| Brief a photographer | `_reference/photo-brief.md` |
 
-The numbered files (`01`–`12`) are the deeper rules — the *why* behind all of the
+The numbered files (`01`–`14`) are the deeper rules — the *why* behind all of the
 above. Read them when you're curious, or when a developer is about to touch the
 site and you want them to follow the house style.
 
@@ -85,6 +93,21 @@ structure intact.)
 every word is in this folder. If a photo isn't in `assets/images`, it isn't on
 your website. That's deliberate — nothing can break because someone else's
 server went down.
+
+---
+
+## If it all goes wrong
+
+One command puts the live site back to how it was before your last change:
+
+```bash
+git revert HEAD
+git push
+```
+
+Nothing you do here is permanent. Every version of every file is saved forever.
+The full guide is `_checklists/emergency.md` — but that one command covers most
+of it.
 
 ---
 

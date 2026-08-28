@@ -14,6 +14,7 @@ self-contained — start at step 1, finish at the last step, done.
 | 07 | Update the chatbot | ●●○ |
 | 08 | Deploy a change | ●●○ — read this before your first deploy |
 | 09 | When something breaks | — |
+| 10 | **The full walkthrough** — a page from nothing to live | ⭐ read once |
 
 **Before any of them:** make sure you can see your changes. Open a terminal in
 the website folder and run:

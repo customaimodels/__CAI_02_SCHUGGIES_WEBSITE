@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Anatomy of a Page | Component Examples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+<style>
+  body { background: var(--ivory); }
+  .docs-wrap { max-width: 980px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .docs-code { background:#1d1d1d; color:#e8e2da; border-radius: var(--radius);
+               padding:1rem 1.2rem; overflow-x:auto; font-size:.82rem; line-height:1.6;
+               margin:.5rem 0 2rem; }
+  .docs-code code { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space:pre; }
+  .docs-rule { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+  .docs-note { background:#fff8e6; border-left:4px solid #e0b400; padding:.9rem 1.1rem;
+               border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin:.8rem 0 2rem; font-size:.93rem; }
+  /* the annotated skeleton */
+  .an { border:2px dashed var(--sage-dark); border-radius: var(--radius);
+        padding:1rem; margin:.6rem 0; background:#fff; position:relative; }
+  .an > .an { border-color: var(--burgundy); opacity:.95; }
+  .an > .an > .an { border-color: var(--green); }
+  .an__tag { font-family: ui-monospace, Menlo, monospace; font-size:.72rem; font-weight:700;
+             background: var(--sage); color: var(--green-deep); padding:.15rem .5rem;
+             border-radius:999px; display:inline-block; margin-bottom:.5rem; }
+  .an > .an > .an__tag { background: var(--burgundy); color:#fff; }
+  .an__why { font-size:.86rem; color: var(--muted); margin:.2rem 0 0; }
+  .an__why b { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+
+<p class="eyebrow"><a href="index.html">&larr; All examples</a></p>
+<h1>Anatomy of a page</h1>
+<p class="lead">Every page on this site is the same six pieces in the same
+  order. Learn this once and you can build any page.</p>
+
+<hr class="docs-rule">
+
+<h2>The skeleton, annotated</h2>
+<p>Each dashed box is one layer of the page. Nested boxes sit inside their
+  parent.</p>
+
+<div class="an">
+  <span class="an__tag">&lt;head&gt;</span>
+  <p class="an__why"><b>The plumbing.</b> Title, description, canonical, social
+    tags, fonts, stylesheet. Five lines you edit, twenty you leave alone.
+    <b>Nothing here is visible on the page</b> — it's what Google and WhatsApp
+    read.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">&lt;div id="site-header-mount"&gt;</span>
+  <p class="an__why"><b>Empty on purpose.</b> The top bar, logo and menu are
+    injected here by <code>main.js</code> when the page loads. Delete this line
+    and the page has no menu.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">SECTION 1 — the hero</span>
+  <p class="an__why">Who it's for, one promise, one obvious button. Three
+    seconds to earn the scroll.</p>
+  <div class="an">
+    <span class="an__tag">.hero__media</span>
+    <p class="an__why">The photo layer. A <code>&lt;picture&gt;</code> block with
+      five filenames — square for phones, wide for desktop, JPEG fallback.</p>
+  </div>
+  <div class="an">
+    <span class="an__tag">.container.hero__inner</span>
+    <p class="an__why">The text layer, sitting over the photo.</p>
+    <div class="an">
+      <span class="an__tag">.eyebrow → h1 → .lead → .btn-row</span>
+      <p class="an__why"><b>Always this order.</b> Small label, big promise,
+        supporting sentence, buttons.</p>
+    </div>
+  </div>
+</div>
+
+<div class="an">
+  <span class="an__tag">SECTION 2 — the pitch</span>
+  <p class="an__why">Text beside a photo. What they actually get.</p>
+  <div class="an">
+    <span class="an__tag">.container.split</span>
+    <p class="an__why">Two columns on desktop, stacked on a phone —
+      automatically. You do nothing.</p>
+  </div>
+</div>
+
+<div class="an">
+  <span class="an__tag">SECTION 3 — the detail</span>
+  <p class="an__why">A grid of features, or a fact list. The practical answers
+    that stop someone leaving to check elsewhere.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">SECTION 4 — proof</span>
+  <p class="an__why">A review or two. Optional, but it's the cheapest
+    persuasion on the page.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">SECTION 5 — the closing CTA</span>
+  <p class="an__why"><b>Never optional.</b> A page that just stops is a wasted
+    visit. Always <code>section--closing</code> with a <code>cta-strip</code>.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">&lt;div id="site-footer-mount"&gt;</span>
+  <p class="an__why">Empty on purpose. Footer, all its links, the WhatsApp
+    button and the scroll-to-top are injected here.</p>
+</div>
+
+<div class="an">
+  <span class="an__tag">&lt;script src="…/main.js?b=NN"&gt;</span>
+  <p class="an__why"><b>The only script on the page.</b> It builds the header
+    and footer, wires the menu and accordions, and injects the chatbot itself.
+    Never add a second one.</p>
+</div>
+
+<hr class="docs-rule">
+
+<h2>The same thing, as code</h2>
+<pre class="docs-code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en-GB"&gt;
+&lt;head&gt;
+  … title, description, canonical, og tags, fonts, stylesheet …
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="site-header-mount"&gt;&lt;/div&gt;          &lt;!-- menu appears here --&gt;
+
+&lt;section class="hero grain hero--short"&gt;      &lt;!-- 1. hero --&gt;
+  &lt;div class="hero__media"&gt;&lt;picture&gt; … &lt;/picture&gt;&lt;/div&gt;
+  &lt;div class="container hero__inner"&gt;
+    &lt;p class="eyebrow eyebrow--sage"&gt;Who it's for&lt;/p&gt;
+    &lt;h1&gt;The promise&lt;/h1&gt;
+    &lt;p class="lead"&gt;The backup sentence.&lt;/p&gt;
+    &lt;div class="btn-row"&gt; … buttons … &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="section"&gt;                     &lt;!-- 2. the pitch --&gt;
+  &lt;div class="container split"&gt; … text … photo … &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="section section--paper2"&gt;     &lt;!-- 3. the detail --&gt;
+  &lt;div class="container"&gt; … grid or fact-list … &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="section section--sage"&gt;       &lt;!-- 4. proof (optional) --&gt;
+  &lt;div class="container"&gt; … quote-feature … &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="section section--closing"&gt;    &lt;!-- 5. closing CTA --&gt;
+  &lt;div class="container"&gt;&lt;div class="cta-strip reveal"&gt; … &lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;div id="site-footer-mount"&gt;&lt;/div&gt;          &lt;!-- footer appears here --&gt;
+&lt;script src="../assets/js/main.js?b=NN"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<div class="docs-note">
+  <b>That's the whole thing.</b> Every page on the site — home, prices, weddings,
+  all 56 blog posts — is this shape with different words in it. When something
+  looks wrong, compare against this and find the piece that's missing.
+</div>
+
+<hr class="docs-rule">
+
+<h2>The three things that break most often</h2>
+
+<h3>1. A missing mount div</h3>
+<p>No menu, or no footer. Check both are present and spelled exactly:</p>
+<pre class="docs-code"><code>&lt;div id="site-header-mount"&gt;&lt;/div&gt;
+&lt;div id="site-footer-mount"&gt;&lt;/div&gt;</code></pre>
+
+<h3>2. The wrong number of ../</h3>
+<p>Page loads as plain text with no styling.</p>
+<table>
+  <tr><th>Page location</th><th>Path to assets</th></tr>
+  <tr><td><code>index.html</code></td><td><code>assets/…</code></td></tr>
+  <tr><td><code>pages/anything.html</code></td><td><code>../assets/…</code></td></tr>
+  <tr><td><code>pages/blog/anything.html</code></td><td><code>../../assets/…</code></td></tr>
+</table>
+
+<h3>3. An unclosed tag</h3>
+<p>Everything after it goes haywire. Every <code>&lt;div&gt;</code> needs its
+  <code>&lt;/div&gt;</code>. Paste the file into
+  <b>validator.w3.org/nu/</b> and it points straight at the line.</p>
+
+</div>
+</body>
+</html>

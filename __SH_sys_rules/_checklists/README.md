@@ -9,5 +9,6 @@ finish line.
 | `phone-qa.md` | Before **every** deploy. Two minutes. |
 | `pre-deploy.md` | Right before you push |
 | `post-deploy.md` | Right after Railway finishes |
+| `emergency.md` | 🚨 Something is broken on the live site |
 
 The deeper version of all of these is `11-review-checklists.md`.
