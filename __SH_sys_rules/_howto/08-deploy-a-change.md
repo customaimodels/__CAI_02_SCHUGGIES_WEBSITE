@@ -27,7 +27,12 @@ Look at the bottom of any page:
 <script src="assets/js/main.js?b=49"></script>
 ```
 
-**`b=49` today.** One number, shared by the whole site.
+One number, shared by the whole site. **It changes every deploy, so never trust
+a number written down — look it up:**
+
+```bash
+grep -o 'styles.css?b=[0-9]*' index.html
+```
 
 Changing that number makes it a brand new address as far as Cloudflare is
 concerned, so it fetches a fresh copy.
@@ -51,7 +56,7 @@ When in doubt, roll it. Rolling it unnecessarily costs nothing.
 From the website folder:
 
 ```bash
-OLD=49; NEW=50
+OLD=<the number you just found>; NEW=<one higher>
 grep -rl "b=$OLD" index.html pages/ | xargs sed -i '' "s/b=$OLD/b=$NEW/g"
 grep -rn "b=$OLD" index.html pages/ assets/js/
 ```
@@ -99,7 +104,7 @@ Then wait. Railway takes a few minutes to build.
 ## Checking it worked
 
 ```bash
-curl -sI "https://schuggies.caitryapps.com/assets/css/styles.css?b=50" | grep -i 'cf-cache-status'
+curl -sI "https://schuggies.caitryapps.com/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
 ```
 
 - `MISS` on the first check — **correct**. It fetched a fresh copy.

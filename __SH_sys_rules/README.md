@@ -103,7 +103,7 @@ before they touch the site.
 
 | | |
 |---|---|
-| Cache-buster now at | `b=49` |
+| Find the current cache-buster | `grep -o 'styles.css?b=[0-9]*' index.html` |
 | Primary button | `btn--chat`, green, "Book a Chat" |
 | Price lock | 2029 |
 | Packages from | £877 DJ · £1,597 band · £4,927 Whole of the Moon |

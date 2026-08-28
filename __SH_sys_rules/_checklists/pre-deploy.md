@@ -15,7 +15,10 @@
 - [ ] Rolled it in **every** page:
 
 ```bash
-OLD=49; NEW=50
+# check the current number first — it moves every deploy
+grep -o 'styles.css?b=[0-9]*' index.html
+
+OLD=<current>; NEW=<current+1>
 grep -rl "b=$OLD" index.html pages/ | xargs sed -i '' "s/b=$OLD/b=$NEW/g"
 grep -rn "b=$OLD" index.html pages/ assets/js/
 ```

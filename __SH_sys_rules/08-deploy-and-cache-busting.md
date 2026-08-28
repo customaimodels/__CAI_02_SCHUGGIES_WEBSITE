@@ -15,7 +15,14 @@ CSS, JS and key images are cache-busted with a `?b=<number>` query parameter:
 <script src="assets/js/main.js?b=49"></script>
 ```
 
-**Current sitewide number: `b=49`.** It is one shared counter, not per-file.
+It is one shared counter, not per-file.
+
+**Never trust a number written in a document — including this one.** It moves
+every deploy. Look up the live value instead:
+
+```bash
+grep -o 'styles.css?b=[0-9]*' index.html
+```
 
 When you change:
 
@@ -29,7 +36,7 @@ When you change:
 Bump across the whole site:
 
 ```bash
-OLD=49; NEW=50
+OLD=<the number you just found>; NEW=<one higher>
 grep -rl "b=$OLD" index.html pages/ | xargs sed -i '' "s/b=$OLD/b=$NEW/g"
 grep -rn "b=$OLD" index.html pages/ assets/js/     # should return nothing
 ```
