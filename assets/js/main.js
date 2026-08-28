@@ -16,7 +16,7 @@
     whatsapp: "https://wa.me/447875718702", // real mobile, recovered from the
     // archived /whatsapp-me/ page (078757 18702) — was previously a guess
     // derived from the landline, which would not have reached WhatsApp
-    calendlyChat: "https://calendly.com/schuggies-ceilidhs/ceilidh-chat-how-a-ceilidh-will-work-for-your-wedding",
+    calendlyChat: "https://calendly.com/schuggies-ceilidhs/book-a-chat",
     calendlyAvail: "https://calendly.com/schuggies-ceilidhs/private-ceilidh-check-if-im-available-for-your-big-day",
     address: "Suite 69, Sneinton Market Unit 6, Gedling Street, Nottingham, NG1 1DS",
     // PLACEHOLDER — client has not supplied their Amazon Associates link yet.
