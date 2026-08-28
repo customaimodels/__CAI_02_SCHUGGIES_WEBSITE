@@ -73,7 +73,7 @@ Never let a post dead-end. The template already has this at the bottom — keep 
   <h2>Fancy a ceilidh at your wedding?</h2>
   <p>Every dance called, prices locked until 2029.</p>
   <div class="btn-row btn-row--center">
-    <a class="btn btn--chat" href="https://calendly.com/schuggies-ceilidhs/ceilidh-chat-how-a-ceilidh-will-work-for-your-wedding" target="_blank" rel="noopener">Book a Chat</a>
+    <a class="btn btn--chat" href="https://calendly.com/schuggies-ceilidhs/book-a-chat" target="_blank" rel="noopener">Book a Chat</a>
   </div>
 </div></div></section>
 ```

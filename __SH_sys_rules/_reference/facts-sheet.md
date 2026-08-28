@@ -93,8 +93,30 @@ events, 220+ weddings" — which is easy to miss when searching.
 | Book a Chat (Calendly) | `main.js` → `SITE.calendlyChat` |
 | Check Availability (Calendly) | `main.js` → `SITE.calendlyAvail` |
 
-**Never paste a Calendly URL into a page.** Reference it from `SITE` so one
-change updates every page.
+### ⚠️ Known weakness — read before changing a booking link
+
+`SITE.calendlyChat` and `SITE.calendlyAvail` exist so a booking link can be
+changed in one place. **The header, mobile menu and footer use them properly.**
+
+But **every in-page button hardcodes the full URL instead** — currently 78 pages.
+So changing a Calendly link is not a one-line edit; it's a sitewide sweep:
+
+```bash
+grep -rl "calendly.com/schuggies-ceilidhs/OLD-SLUG" index.html pages/ \
+  | xargs sed -i '' "s|OLD-SLUG|NEW-SLUG|g"
+grep -rn "OLD-SLUG" index.html pages/ assets/js/   # must print nothing
+```
+
+**Then check the handbook too** — `_templates/` and `_examples/` contain the
+link, and a stale template quietly puts a dead booking link on every new page
+built from it.
+
+This happened during the writing of this handbook: the chat link moved to
+`/book-a-chat` and 78 pages plus two handbook files needed updating.
+
+**If a developer is ever in this area:** the fix is to make in-page buttons read
+from `SITE` like the header does. Until then, treat any booking-link change as a
+sweep, not an edit.
 
 ---
 

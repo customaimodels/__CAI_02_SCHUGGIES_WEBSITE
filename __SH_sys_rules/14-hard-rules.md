@@ -119,26 +119,33 @@ No prices it hasn't been given, no availability, no promises about dates. If it
 doesn't know, it points at a chat. A confident wrong answer is worse than no
 answer.
 
-### 22. Never ship placeholder text
+### 22. Never change a Calendly link in only one place
+**What happens:** 78 pages hardcode the full booking URL, so changing it in
+`SITE` alone leaves every in-page "Book a Chat" button pointing at a dead link —
+on exactly the button you most need to work.
+**Instead:** sweep all 78, then the handbook's templates and examples too. See
+`_reference/facts-sheet.md`.
+
+### 23. Never ship placeholder text
 Search every new page for capitals you meant to replace before it goes live.
 
 ---
 
 ## Process rules
 
-### 23. Never deploy without the phone check
+### 24. Never deploy without the phone check
 Two minutes. `_checklists/phone-qa.md`. Most of your visitors are on a phone;
 if you only look at a desktop you are checking the minority case.
 
-### 24. Never trust your own browser after a deploy
+### 25. Never trust your own browser after a deploy
 It keeps its own copies and will happily show you yesterday's page while telling
 you nothing is wrong. **Private window, every time.**
 
-### 25. Never deploy `main.js` or `styles.css` on their own
+### 26. Never deploy `main.js` or `styles.css` on their own
 They're shared by 60+ pages. Ship them with whatever HTML depends on them, or
 some pages get a stylesheet that doesn't match their markup.
 
-### 26. Never panic-edit a broken live site
+### 27. Never panic-edit a broken live site
 `git revert HEAD` then `git push` puts it back safely. Fix it calmly afterwards.
 Editing files at speed on a broken site is how one problem becomes three.
 

@@ -15,7 +15,7 @@ var SITE = {
   phoneHref: "tel:01332498839",
   email: "info@schuggies-ceilidhs.co.uk",
   whatsapp: "https://wa.me/447875718702",
-  calendlyChat:  "https://calendly.com/schuggies-ceilidhs/ceilidh-chat-...",
+  calendlyChat:  "https://calendly.com/schuggies-ceilidhs/book-a-chat",
   calendlyAvail: "https://calendly.com/schuggies-ceilidhs/private-ceilidh-...",
   address: "Suite 69, Sneinton Market Unit 6, Gedling Street, Nottingham, NG1 1DS",
   ...
