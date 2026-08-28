@@ -123,7 +123,7 @@
     '<div class="topbar"><div class="container">' +
       '<a class="topbar__item" href="'+SITE.phoneHref+'">'+ICON.phone+' '+SITE.phone+'</a>' +
       '<a class="topbar__item" href="mailto:'+SITE.email+'">✉️ '+SITE.email+'</a>' +
-      '<span class="topbar__item">💷 Prices locked until 2028</span>' +
+      '<span class="topbar__item">💷 Prices locked until 2029</span>' +
     '</div></div>' +
     '<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">' +
       '<a class="brand" href="'+base+'index.html">' +

@@ -19,7 +19,7 @@
     model: "llama3.2",
     system:
       "You are the friendly booking assistant for Schuggies-Ceilidhs, authentic Scottish ceilidh entertainment (weddings, parties, corporate), Nottingham-based, UK-wide. " +
-      "Warm, concise (2-4 sentences), a touch of Scottish charm. Ceilidh DJ from £877, live band from £1,597, Whole of the Moon from £4,927; prices locked to 2028; every dance is called; UK-wide incl. Channel Islands; hosting since 2008, 550+ events, 220+ weddings. Phone 01332 498839, email info@schuggies-ceilidhs.co.uk. Never invent prices or availability; if unsure, suggest booking a chat."
+      "Warm, concise (2-4 sentences), a touch of Scottish charm. Ceilidh DJ from £877, live band from £1,597, Whole of the Moon from £4,927; prices locked to 2029; every dance is called; UK-wide incl. Channel Islands; hosting since 2008, 550+ events, 220+ weddings. Phone 01332 498839, email info@schuggies-ceilidhs.co.uk. Never invent prices or availability; if unsure, suggest booking a chat."
   };
 
   var CONTACT = "You can call 01332 498839, email info@schuggies-ceilidhs.co.uk, or book a free chat on the Contact page.";
@@ -27,7 +27,7 @@
   // ---- Built-in FAQ brain (keyword-matched) ----
   var KB = [
     { keys: ["price","cost","how much","expensive","fee","quote","budget","£","pound"],
-      a: "Here's the guide pricing (locked until 2028):\n• Ceilidh DJ set — from £877 (most popular)\n• Live ceilidh band — from £1,597\n• The Whole of the Moon — from £4,927\nGuide prices are for the East Midlands (NG, LE and DE postcodes); a little extra for travel beyond. Want a proper quote? " + CONTACT },
+      a: "Here's the guide pricing (locked until 2029):\n• Ceilidh DJ set — from £877 (most popular)\n• Live ceilidh band — from £1,597\n• The Whole of the Moon — from £4,927\nGuide prices are for the East Midlands (NG, LE and DE postcodes); a little extra for travel beyond. Want a proper quote? " + CONTACT },
     { keys: ["package","included","what do i get","what's included","offer","options"],
       a: "Three flexible packages, every dance called:\n1) Ceilidh-DJ set (from £877) — recorded music, PA & mic for speeches, optional end-of-night disco.\n2) Ceilidh & Disco live band (from £1,597) — my signature experience with a live band.\n3) The Whole of the Moon (from £4,927) — all the unique extras." },
     { keys: ["first dance"],
@@ -51,7 +51,7 @@
     { keys: ["scottish","scotland","have to be","kilt","irish"],
       a: "Not at all! You don't need to be Scottish, have Celtic roots or wear a kilt — it's just brilliant, inclusive fun. (I do wear the kilt, mind.)" },
     { keys: ["available","availability","date","free","calendar","my day"],
-      a: "I can check your date quickly — pop over to the Contact page or the 'Book a Chat' link and I'll confirm availability. Prices are held to 2028, so there's no rush-cost." },
+      a: "I can check your date quickly — pop over to the Contact page or the 'Book a Chat' link and I'll confirm availability. Prices are held to 2029, so there's no rush-cost." },
     { keys: ["contact","phone","email","call you","reach","number","get in touch"],
       a: CONTACT },
     { keys: ["what do you do","caller","calling","host","mc","actually do"],
