@@ -883,6 +883,22 @@ body.no-scroll { overflow: hidden; }
   cursor: pointer; transition: background .2s, color .2s;
 }
 .cbot__chip:hover { background: var(--burgundy); color: #fff; border-color: var(--burgundy); }
+.cbot__chip:disabled { opacity: .5; cursor: default; }
+.cbot__chip:disabled:hover { background: #fff; color: var(--burgundy); border-color: var(--sage-dark); }
+
+/* The chip row now persists across the whole conversation instead of deleting
+   itself on first tap, so it needs a resting state that does not compete with
+   the messages above it. Dimmed while a reply is streaming in. */
+.cbot__chips.is-busy { opacity: .55; }
+
+/* Two standing destinations under the suggested questions: the prices, and a
+   chat in the diary. Anchors, not buttons, so they open properly. */
+.cbot__links { display: flex; flex-wrap: wrap; gap: .45rem; width: 100%; margin-top: .15rem; }
+.cbot__chip--link {
+  background: var(--burgundy); color: #fff; border-color: var(--burgundy);
+  text-decoration: none; display: inline-block;
+}
+.cbot__chip--link:hover { background: var(--burgundy-dark, #5d1f2b); color: #fff; }
 
 /* ============================================================
    Ceilidh Price Guide — premium responsive banner
