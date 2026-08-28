@@ -64,6 +64,20 @@
   var depth = Math.max(0, segs.length - 1);          // index.html -> 0
   var inPages = /\/pages\//.test(location.pathname);
   var base = depth ? new Array(depth + 1).join("../") : "";
+
+  // This script is loaded as main.js?b=NN; reuse that NN for the chatbot so
+  // there is one buster to roll, not two that can drift apart.
+  var CBOT_BUST = (function () {
+    var me = document.currentScript || (function () {
+      var all = document.getElementsByTagName("script");
+      for (var i = all.length - 1; i >= 0; i--) {
+        if (/assets\/js\/main\.js/.test(all[i].src)) return all[i];
+      }
+      return null;
+    })();
+    var m = me && me.src && me.src.match(/\?(b=\d+)/);
+    return m ? "?" + m[1] : "";
+  })();
   function url(href) {
     if (/^https?:|^tel:|^mailto:/.test(href)) return href;
     // href is defined relative to root; adjust for depth
@@ -362,10 +376,15 @@
     if (h) h.innerHTML = buildHeader();
     if (f) f.innerHTML = buildFooter();
     wire();
-    // inject the Ollama chatbot (single source, path-aware)
+    // Inject the chatbot (single source, path-aware).
+    // The buster is inherited from THIS file's own ?b= rather than hardcoded.
+    // It used to read "?b=1" and never moved, so chatbot.js was pinned at the
+    // edge forever: every later edit to it — the price years, the bot's name —
+    // shipped to the repo and never reached a visitor. Rolling the number in
+    // the HTML now carries the chatbot along with the stylesheet.
     if (!document.querySelector('script[data-cbot]')) {
       var s = document.createElement("script");
-      s.src = base + "assets/js/chatbot.js?b=1";
+      s.src = base + "assets/js/chatbot.js" + CBOT_BUST;
       s.setAttribute("data-cbot", "1");
       document.body.appendChild(s);
     }
