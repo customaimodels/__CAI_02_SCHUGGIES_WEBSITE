@@ -279,7 +279,8 @@ p  { margin: 0 0 1rem; }
    44px minimum, so nothing changes visually on desktop. */
 @media (max-width: 900px) {
   .topbar__item { min-height: 44px; padding-block: .5rem; }
-  .topbar .container { padding-block: .2rem; }
+  /* `.topbar .container { padding-block: .2rem }` used to sit here and lost to
+     the component default below. Re-declared after it, further down. */
   .social-row a { min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; }
   .mobile-nav a { min-height: 44px; display: flex; align-items: center; }
   /* Privacy · Terms in the footer bottom bar */
@@ -412,10 +413,9 @@ body.no-scroll { overflow: hidden; }
    upscale, which is exactly what reads as "pixelly". 62vh cuts that to ~1.4x. */
 @media (max-width: 700px) {
   .hero { min-height: clamp(440px, 62vh, 560px); }
-  /* A square photo in a portrait box is height-limited, so `cover` crops
-     horizontally and the vertical value here has no slack to work with. The
-     axis that actually does something on a phone is X. */
-  .hero__media img { object-position: 58% center; }
+  /* The phone crop lived here and never applied either — same trap as the
+     scrim: `.hero__media img` at the top of the Hero section below wins on
+     source order. Moved to the PHONE LAYOUT block at the end. */
   /* Four CTAs at 390px wrapped into a ragged 1-line/2-line/2-line/1-line
      block. A 2x2 grid gives equal widths and equal heights, and every target
      clears the 44px minimum. */
@@ -1101,7 +1101,20 @@ body.no-scroll { overflow: hidden; }
   .hero h1 { text-shadow: 0 1px 16px rgba(0,0,0,.55); }
   .hero p.lead,
   .hero__def { text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+
+  /* Phone crop. A square source in a taller-than-wide phone box is height
+     limited, so `cover` spills horizontally and X is the only axis with any
+     slack — the vertical 38% bias the desktop rule applies does nothing here.
+     `:not()` keeps this off the two pre-composed heroes (home, weddings),
+     whose subject is already placed in frame and must not be re-biased. */
+  .hero__media img:not(.hero__img--composed) { object-position: 58% center; }
 }
+
+/* The ≤900px block near the top of this file sets 44px tap targets, but its
+   `.topbar .container` padding lost to the component default declared after
+   it, leaving the phone top bar a touch taller than intended. Same fix shape
+   as `.footer-links a` above: re-declare it after the rule that beat it. */
+@media (max-width: 900px) { .topbar .container { padding-block: .2rem; } }
 
 /* Very small phones: one action per line beats four cramped pills. */
 @media (max-width: 380px) {
