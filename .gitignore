@@ -17,3 +17,6 @@ _ARCHIVE_original/
 # Local phone-preview harness. The repo root is the web root, so committing
 # this would publish a dev tool at /_phone.html. Recreate it from the README.
 _phone.html
+
+# Node deps for the Massie endpoint — Railway installs these at build time.
+node_modules/

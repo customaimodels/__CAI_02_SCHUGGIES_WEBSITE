@@ -1,9 +1,9 @@
 /* ============================================================
    Schuggies-Ceilidhs — "Ask Massie" chatbot
-   Works OUT OF THE BOX: answers common FAQ questions from a
-   built-in knowledge base (no server, no install needed).
-   Optionally upgrades to a local Ollama model for free-form
-   questions if one is running.
+   Answers from a built-in FAQ brain, and — when the server has
+   an API key — hands the same facts to Claude so she replies in
+   her own words, streams them token by token, and remembers the
+   conversation. No key, no network: the FAQ brain still answers.
    ============================================================ */
 (function () {
   "use strict";
@@ -11,21 +11,17 @@
   var CONFIG = {
     title: "Ask Massie",
     greeting: "Hi, I'm Massie 👋 Fancy a ceilidh but not sure where to start? Ask me anything, or tap a question below.",
-    // Ollama is asked for once, at open, and never again if it is not there.
-    // A visitor has no Ollama and an HTTPS page cannot reach http://localhost,
-    // so the probe fails for them in well under a second and Massie falls back
-    // to the FAQ brain — same behaviour they had before, no request per turn.
-    // On Schuggie's own machine the probe succeeds and she turns conversational.
-    useOllama: true,
-    endpoint: "http://localhost:11434/api/chat",
-    tagsEndpoint: "http://localhost:11434/api/tags",
-    // Preferred model, but the tag actually installed wins. A bare "llama3.2"
-    // is NOT a valid tag unless :latest was pulled — the machine here had only
-    // llama3.2:3b, so a hardcoded name 404'd every request. The probe reads
-    // /api/tags and picks the closest real tag instead.
-    model: "llama3.2",
-    probeMs: 1200,       // give up on the probe quickly; never block the UI
+    // Massie now talks to our own server, which holds the API key. The old
+    // build pointed at http://localhost:11434 — an Ollama on Schuggie's laptop
+    // that no visitor could reach and that was never running anyway. Same
+    // origin, so no CORS, no key in the page, and it works for everybody.
+    endpoint: "/api/chat",
+    healthEndpoint: "/api/health",
+    probeMs: 2500,       // one cheap health check at open; never blocks the UI
     maxTurns: 12,        // trim history so context cannot grow without bound
+    // Kept for the offline fallback copy only. The real brief lives on the
+    // server — a system prompt posted from the browser is a system prompt any
+    // visitor can rewrite, and this one guards the prices.
     system:
       "You are Massie, the friendly booking assistant for Schuggies-Ceilidhs, authentic Scottish ceilidh entertainment (weddings, parties, corporate), Nottingham-based, UK-wide. " +
       "Warm, concise (2-4 sentences), a touch of Scottish charm. " +
@@ -122,7 +118,7 @@
   function faqFacts(q){ return faqMatch(q); }
 
   var history = [{ role: "system", content: CONFIG.system }];
-  var busy = false, ollamaOK = null, MODEL = CONFIG.model;
+  var busy = false, massieOK = null;
 
   /* The fab is Massie herself, not a generic speech bubble — a face invites a
      question in a way an icon does not. Path is resolved from the page depth
@@ -204,27 +200,21 @@
       for (var i=0;i<bs.length;i++) bs[i].disabled = !!state;
     }
 
-    /* Ask Ollama once whether it is there. Everything downstream reads the
-       cached answer, so a visitor pays for one failed request per page rather
-       than one per question. */
-    function probeOllama(){
-      if (!CONFIG.useOllama || ollamaOK !== null) return Promise.resolve(ollamaOK);
+    /* One health check per page, cached. It costs nothing on the model — it
+       only asks whether the server has a key — so a visitor never pays a
+       failed model request just to find out Massie is awake. */
+    function probeMassie(){
+      if (massieOK !== null) return Promise.resolve(massieOK);
       var done = false;
       return new Promise(function(resolve){
-        var t = setTimeout(function(){ if(!done){ done=true; ollamaOK=false; resolve(false); } }, CONFIG.probeMs);
-        fetch(CONFIG.tagsEndpoint, { method:"GET" })
+        var t = setTimeout(function(){ if(!done){ done=true; massieOK=false; resolve(false); } }, CONFIG.probeMs);
+        fetch(CONFIG.healthEndpoint, { method:"GET" })
           .then(function(r){ return r.ok ? r.json() : null; })
           .catch(function(){ return null; })
-          .then(function(data){
+          .then(function(d){
             if (done) return;
             done = true; clearTimeout(t);
-            var names = (data && data.models || []).map(function(m){ return m.name; }).filter(Boolean);
-            if (!names.length){ ollamaOK = false; resolve(false); return; }
-            // Exact tag, then anything sharing the preferred family, then whatever is there.
-            var want = CONFIG.model;
-            MODEL = names.indexOf(want) !== -1 ? want
-                  : (names.filter(function(n){ return n.indexOf(want.split(":")[0]) === 0; })[0] || names[0]);
-            ollamaOK = true; resolve(true);
+            massieOK = !!(d && d.massie); resolve(massieOK);
           });
       });
     }
@@ -255,10 +245,10 @@
          The model earns its place on everything else: follow-ups, phrasing a
          visitor did not anticipate, and anything off-script. Those have no
          canned answer to lose, and it has the conversation so far for context. */
-      if (facts){ reply(facts); return; }
-
-      probeOllama().then(function(live){
-        if (!live){ reply(fallback()); return; }
+      probeMassie().then(function(live){
+        /* No key, no server, no network: the FAQ brain still answers. This is
+           the behaviour the site has had all along, kept as the floor. */
+        if (!live){ reply(facts || fallback()); return; }
 
         /* Model reachable: let her actually talk. The matched FAQ goes in as
            ground truth rather than being returned verbatim, so she answers in
@@ -271,12 +261,17 @@
            like "tell me more about the first one" matched nothing, ran
            unguarded, and the model happily invented a 500-song playlist and
            offered to take the booking. */
-        var guard = "Answer only from the verified facts in your standing brief and from what has already been said in this conversation above — earlier answers in this chat are trustworthy, so use them. " +
-          "Invent nothing: no counts, no song numbers, no package inclusions, no availability, no dates. " +
-          "If the answer is not something you know, say plainly that you are not sure and offer a chat with Schuggie. Keep it to 2-3 sentences.";
+        /* Only the conversation goes up. The brief, the guard rails and the
+           model choice are the server's business — see server.js. A matched
+           FAQ rides alongside as `facts`, so she puts our real numbers into
+           her own words instead of reading a card at people.
 
-        var msgs = history.slice();
-        msgs.splice(msgs.length - 1, 0, { role: "system", content: guard });
+           The previous build returned a keyword match verbatim and never
+           called the model at all, because llama3.2:3b dropped the figures
+           when asked to restate them. That was a fair guard against a 3B
+           model on a laptop; it is not needed against the one behind this
+           endpoint, and it was the reason every common question felt canned. */
+        var msgs = history.filter(function(m){ return m.role !== "system"; });
         streamReply(msgs, facts);
       });
     }
@@ -287,11 +282,26 @@
        cannot read the body stream. */
     function streamReply(msgs, facts){
       busy = true; setChipsBusy(true);
-      var bubble = add("bot", ""); bubble.classList.add("cbot__msg--typing");
-      bubble.textContent = "…";
-      var got = "";
+      var bubble = add("bot", "");
+
+      /* Three bouncing dots while she thinks. A bubble that sits there as a
+         flat "…" reads as broken; the same wait with movement in it reads as
+         someone composing a reply. It is removed the instant the first token
+         lands, so the animation never competes with the words. */
+      bubble.classList.add("cbot__msg--thinking");
+      bubble.innerHTML = '<span class="cbot__dots" aria-label="Massie is typing"><i></i><i></i><i></i></span>';
+      var got = "", started = false;
+
+      function firstToken(){
+        if (started) return;
+        started = true;
+        bubble.classList.remove("cbot__msg--thinking");
+        bubble.classList.add("cbot__msg--typing");
+        bubble.textContent = "";
+      }
 
       function finish(text){
+        bubble.classList.remove("cbot__msg--thinking");
         bubble.classList.remove("cbot__msg--typing");
         text = (text || "").trim();
         if (!text) text = facts || fallback();
@@ -303,9 +313,13 @@
         input.focus();
       }
 
+      /* Server-Sent Events: "event: delta" carries one chunk of text,
+         "event: done" ends the turn. Parsed by hand because EventSource
+         cannot POST and this needs a body. */
       fetch(CONFIG.endpoint, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: MODEL, messages: msgs, stream: true })
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: msgs, facts: facts || "" })
       })
       .then(function(r){
         if (!r.ok || !r.body || !r.body.getReader) throw 0;
@@ -314,32 +328,33 @@
           return reader.read().then(function(res){
             if (res.done) return finish(got);
             buf += dec.decode(res.value, { stream: true });
-            var lines = buf.split("\n"); buf = lines.pop();
-            lines.forEach(function(line){
-              if (!line.trim()) return;
-              try {
-                var d = JSON.parse(line);
-                var piece = d && d.message && d.message.content;
-                if (piece){
-                  got += piece;
-                  bubble.textContent = got;
-                  log.scrollTop = log.scrollHeight;
-                }
-              } catch (e) { /* partial JSON line; the next chunk completes it */ }
+            var parts = buf.split("\n\n"); buf = parts.pop();
+            parts.forEach(function(block){
+              var ev = "", data = "";
+              block.split("\n").forEach(function(line){
+                if (line.indexOf("event:") === 0) ev = line.slice(6).trim();
+                else if (line.indexOf("data:") === 0) data += line.slice(5).trim();
+              });
+              if (!data) return;
+              var d; try { d = JSON.parse(data); } catch (e) { return; }
+              if (ev === "delta" && d.t){
+                firstToken();
+                got += d.t;
+                bubble.textContent = got;
+                log.scrollTop = log.scrollHeight;
+              } else if (ev === "error"){
+                massieOK = false;
+              }
             });
             return pump();
           });
         })();
       })
       .catch(function(){
-        /* Streaming unavailable — one plain request, then give up gracefully. */
-        fetch(CONFIG.endpoint, {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ model: MODEL, messages: msgs, stream: false })
-        })
-        .then(function(r){ if (!r.ok) throw 0; return r.json(); })
-        .then(function(d){ finish(d && d.message && d.message.content); })
-        .catch(function(){ ollamaOK = false; finish(facts || fallback()); });
+        /* Endpoint unreachable or the browser cannot stream — fall back to
+           the answer we already had rather than showing an error. */
+        massieOK = false;
+        finish(facts || fallback());
       });
     }
 
