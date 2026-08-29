@@ -421,13 +421,10 @@ body.no-scroll { overflow: hidden; }
      clears the 44px minimum. */
   .hero .btn-row { display: grid; grid-template-columns: 1fr 1fr; }
   .hero .btn-row .btn { width: 100%; justify-content: center; text-align: center; }
-  /* The copy runs the full height of a phone hero, so it is always over the
-     photo. Weight the scrim vertically here rather than left, which is what
-     the desktop composition needs. */
-  .hero__media::after {
-    background:
-      linear-gradient(180deg, rgba(18,18,18,.86) 0%, rgba(45,20,26,.72) 38%, rgba(20,20,20,.62) 70%, rgba(20,20,20,.84) 100%);
-  }
+  /* The phone scrim used to live here and never applied: this block sits ABOVE
+     `.hero__media::after` and `.hero--darker .hero__media::after`, so both of
+     those won on source order and phones silently got the desktop gradient.
+     It now lives in the PHONE LAYOUT block at the end of this file. */
 }
 .hero__media { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; }
 /* Square source, wide frame — bias the crop upward so faces survive instead of
@@ -1076,6 +1073,34 @@ body.no-scroll { overflow: hidden; }
 
   /* Top bar: two rows maximum, centred. */
   .topbar .container { gap: .4rem 1rem; row-gap: .2rem; }
+
+  /* ---- Hero scrim, phone ----
+     The desktop scrim is weighted LEFT (100deg), because on a wide screen the
+     copy sits in the left half and the right half is meant to keep the photo's
+     colour. A phone has no left half: the copy runs the full width, bottom
+     aligned, so a left-weighted wash leaves the last third of every line
+     sitting on an unscrimmed photo. On weddings that was white text on a white
+     dress. Phones get a VERTICAL ramp instead — light at the top so the picture
+     still reads, heavy under the copy — plus a flat floor that knocks back the
+     blown highlights (fairy lights, white dresses) the ramp alone misses.
+     These are `.hero .hero__media` rather than `.hero__media` so they outrank
+     `.hero--darker` on specificity, not on `!important`. */
+  .hero .hero__media::after {
+    background:
+      linear-gradient(180deg, rgba(20,20,20,.30) 0%, rgba(28,18,22,.38) 32%, rgba(45,20,26,.72) 62%, rgba(22,15,18,.88) 100%),
+      linear-gradient(0deg, rgba(20,20,20,.16), rgba(20,20,20,.16));
+  }
+  /* Bright photos (home, weddings, parties, corporate) carry more. */
+  .hero--darker .hero__media::after {
+    background:
+      linear-gradient(180deg, rgba(20,20,20,.42) 0%, rgba(30,19,23,.52) 28%, rgba(45,20,26,.82) 60%, rgba(18,12,15,.93) 100%),
+      linear-gradient(0deg, rgba(20,20,20,.22), rgba(20,20,20,.22));
+  }
+  /* Belt and braces on a phone: even a good scrim can meet a highlight, and a
+     soft shadow costs nothing where the type is already light-on-dark. */
+  .hero h1 { text-shadow: 0 1px 16px rgba(0,0,0,.55); }
+  .hero p.lead,
+  .hero__def { text-shadow: 0 1px 10px rgba(0,0,0,.45); }
 }
 
 /* Very small phones: one action per line beats four cramped pills. */
