@@ -20,3 +20,6 @@ _phone.html
 
 # Node deps for the Massie endpoint — Railway installs these at build time.
 node_modules/
+
+# local Claude settings
+.claude/
