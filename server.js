@@ -43,6 +43,26 @@ function isPublic(rel) {
   return PUBLIC_DIRS.includes(parts[0]) && !/\.(md|py|zip|log|sh)$/i.test(rel);
 }
 
+// The old WordPress site lived at /<slug>/. Printed QR codes, Google and
+// bookmarks still point there, so a single-segment slug that names a page
+// (or a blog post) is sent to it with a 301. OLD holds the slugs that were renamed.
+const OLD = {
+  "prices-packages-and-options": "pages/prices.html",
+  "tcs": "pages/terms.html",
+  "terms-and-conditions": "pages/terms.html",
+};
+
+function oldAddress(rel) {
+  const slug = rel.replace(/(\/index)?\.html$/, "").replace(/\/+$/, "");
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
+  if (OLD[slug]) return OLD[slug];
+  for (const dir of ["pages", "pages/blog"]) {
+    const c = dir + "/" + slug + ".html";
+    if (fs.existsSync(path.join(ROOT, c))) return c;
+  }
+  return null;
+}
+
 function notFound(res) {
   res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
   res.end("<h1>404</h1><p><a href=\"/\">Back to Schuggies-Ceilidhs</a></p>");
@@ -77,6 +97,11 @@ const server = http.createServer((req, res) => {
                          "Cache-Control": "public, max-age=300" });
     if (req.method === "HEAD") return res.end();
     return fs.createReadStream(full).pipe(res);
+  }
+  const moved = oldAddress(rel);
+  if (moved) {
+    res.writeHead(301, { "Location": "/" + moved + url.search, "Cache-Control": "public, max-age=86400" });
+    return res.end();
   }
   notFound(res);
 });
