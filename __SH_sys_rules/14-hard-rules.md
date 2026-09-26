@@ -59,10 +59,11 @@ the ability to see where they are on the page.
 **What happens:** `main.js` already injects it. Add another and you get two chat
 bubbles stacked on each other.
 
-### 10. Never link to `schuggies-ceilidhs.co.uk` from page content
-**What happens:** you send a visitor who found your new site to the old
-WordPress one. Everything they need is here.
-**Exceptions:** canonical/OG meta tags, Calendly, WhatsApp, social profiles.
+### 10. The site's one address is `https://www.schuggies-ceilidhs.co.uk`
+**What happens otherwise:** Google splits the site across two addresses, and
+shared links show the wrong preview. Canonical, Open Graph, sitemap and any
+absolute link use exactly `https://www.schuggies-ceilidhs.co.uk`. The bare
+`schuggies-ceilidhs.co.uk` redirects there. The old preview address is retired — never link to it.
 
 ---
 

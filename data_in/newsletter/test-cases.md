@@ -15,7 +15,7 @@ Run all of these before telling the client it is live.
 | 7 | Screen reader | Label announced (not just placeholder) |
 | 8 | Footer floats | WhatsApp/chat bubbles do not cover the form or button |
 
-## Live (`https://schuggies.caitryapps.com`)
+## Live (`https://www.schuggies-ceilidhs.co.uk`)
 
 | # | Case | Expected |
 |---|------|----------|

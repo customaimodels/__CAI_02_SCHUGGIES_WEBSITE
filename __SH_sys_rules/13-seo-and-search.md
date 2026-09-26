@@ -27,9 +27,9 @@ A list of every page, handed to Google so it doesn't have to guess. Create
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://schuggies.caitryapps.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://schuggies.caitryapps.com/pages/prices.html</loc><priority>0.9</priority></url>
-  <url><loc>https://schuggies.caitryapps.com/pages/weddings.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.schuggies-ceilidhs.co.uk/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.schuggies-ceilidhs.co.uk/pages/prices.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.schuggies-ceilidhs.co.uk/pages/weddings.html</loc><priority>0.9</priority></url>
   <!-- …one line per page. Blog posts get 0.5. -->
 </urlset>
 ```
@@ -46,7 +46,7 @@ User-agent: *
 Allow: /
 Disallow: /__SH_sys_rules/
 
-Sitemap: https://schuggies.caitryapps.com/sitemap.xml
+Sitemap: https://www.schuggies-ceilidhs.co.uk/sitemap.xml
 ```
 
 The `Disallow` line keeps this handbook out of search results.
@@ -58,7 +58,7 @@ Tells Google "this is the real address of this page", so it doesn't treat
 **Right now not one page has this.** In every page's `<head>`:
 
 ```html
-<link rel="canonical" href="https://schuggies.caitryapps.com/pages/prices.html">
+<link rel="canonical" href="https://www.schuggies-ceilidhs.co.uk/pages/prices.html">
 ```
 
 The templates in `_templates/` already include it. This is about the 80 existing
@@ -72,7 +72,7 @@ shows a photo and a headline — or a bare grey URL that nobody clicks.
 ```html
 <meta property="og:title" content="9 Reasons You Need a Ceilidh">
 <meta property="og:description" content="The same sentence as your meta description.">
-<meta property="og:image" content="https://schuggies.caitryapps.com/assets/images/og-banner.jpg">
+<meta property="og:image" content="https://www.schuggies-ceilidhs.co.uk/assets/images/og-banner.jpg">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
 ```
@@ -227,5 +227,5 @@ Free, worth 20 minutes a month:
 - **Google Search Console** — what you're found for, and what's broken. Submit
   the sitemap here.
 - **PageSpeed Insights** — paste any URL, get a speed score.
-- Search `site:schuggies.caitryapps.com` in Google — shows every page Google
+- Search `site:www.schuggies-ceilidhs.co.uk` in Google — shows every page Google
   knows about. If a page isn't listed, it isn't linked well enough.

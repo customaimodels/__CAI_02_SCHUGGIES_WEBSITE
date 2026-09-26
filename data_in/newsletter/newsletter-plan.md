@@ -5,7 +5,7 @@
 
 ## 1. Purpose
 
-A simple, compliant newsletter signup for `schuggies.caitryapps.com` that:
+A simple, compliant newsletter signup for `www.schuggies-ceilidhs.co.uk` that:
 
 - Collects email addresses for ceilidh updates and planning tips.
 - Stores them in a proper email provider (never in this repo).

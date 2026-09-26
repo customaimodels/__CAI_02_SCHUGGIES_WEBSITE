@@ -171,7 +171,7 @@ Ask why it wasn't caught:
 
 | | |
 |---|---|
-| Live site | schuggies.caitryapps.com |
+| Live site | www.schuggies-ceilidhs.co.uk |
 | Repo | github.com/vargasyeriko/schuggiesweedings |
 | Host | Railway |
 | CDN | Cloudflare |

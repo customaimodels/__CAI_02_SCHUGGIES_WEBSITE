@@ -104,7 +104,7 @@ Then wait. Railway takes a few minutes to build.
 ## Checking it worked
 
 ```bash
-curl -sI "https://schuggies.caitryapps.com/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
+curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
 ```
 
 - `MISS` on the first check — **correct**. It fetched a fresh copy.

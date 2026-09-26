@@ -39,7 +39,7 @@ Open the file. At the top, change these four things and nothing else:
 <title>Birthday Ceilidhs in Leicester | Schuggies-Ceilidhs</title>
 <meta name="description" content="One sentence, about 150 characters, that
       would make someone click this in Google.">
-<link rel="canonical" href="https://schuggies.caitryapps.com/pages/leicester-birthday-ceilidhs.html">
+<link rel="canonical" href="https://www.schuggies-ceilidhs.co.uk/pages/leicester-birthday-ceilidhs.html">
 <meta property="og:title" content="Birthday Ceilidhs in Leicester">
 ```
 

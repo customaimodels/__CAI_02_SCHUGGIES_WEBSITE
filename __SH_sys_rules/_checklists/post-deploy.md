@@ -6,7 +6,7 @@ your normal browser keeps its own copies and will lie to you.
 ## Did it actually deploy?
 
 ```bash
-curl -sI "https://schuggies.caitryapps.com/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
+curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
 ```
 
 - [ ] Says `MISS` on the first check. That's correct.

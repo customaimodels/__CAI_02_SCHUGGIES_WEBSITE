@@ -123,7 +123,7 @@ First line: `git revert HEAD && git push`. Nothing here is unrecoverable.
 | Guide-price area | NG, LE, DE postcodes |
 | Every number & claim | `_reference/facts-sheet.md` |
 | Approved wording | `_reference/copy-bank.md` |
-| Live site | schuggies.caitryapps.com |
+| Live site | www.schuggies-ceilidhs.co.uk |
 | Run it locally | `python3 -m http.server 8177` |
 | Phone preview | `localhost:8177/_phone.html?p=index.html` |
 | Undo everything uncommitted | `git checkout -- .` |

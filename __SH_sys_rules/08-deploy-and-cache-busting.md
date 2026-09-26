@@ -1,8 +1,10 @@
 # 08 — Deploy, Cache Busting & Environments
 
-Static site → **Railway** (origin) → **Cloudflare** (edge) →
-`schuggies.caitryapps.com`. Cloudflare caches CSS/JS at the edge for hours, so a
-change nobody can see is almost always a cache problem, not a code problem.
+Static site → **Railway** (project CAI_02_SCHUGGIES_WEBSITE, service `schuggies`) →
+`www.schuggies-ceilidhs.co.uk` (DNS at 20i/StackCP, run by Ash). There is no CDN in
+front any more: files carry `Cache-Control: max-age=300`, so browsers hold CSS/JS for
+up to 5 minutes. A change nobody can see is almost always a cache problem — roll `?b=`.
+(Sections below that mention Cloudflare are history from the old preview host.)
 
 ---
 
@@ -73,7 +75,7 @@ reason the counter is at 49.
 ## 4. Verifying a deploy
 
 ```bash
-curl -sI "https://schuggies.caitryapps.com/assets/css/styles.css?b=NN" \
+curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=NN" \
   | grep -i 'cf-cache-status\|age\|last-modified'
 ```
 

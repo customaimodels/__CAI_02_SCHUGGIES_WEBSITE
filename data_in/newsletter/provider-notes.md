@@ -33,7 +33,7 @@ Two reasons, both verified:
 
 1. **This folder is served to the public.** The repo root *is* the web root —
    Railway and `tryon.py` both serve everything in it. Once pushed, this file
-   is readable at `https://schuggies.caitryapps.com/data_in/newsletter/provider-notes.md`.
+   is readable at `https://www.schuggies-ceilidhs.co.uk/data_in/newsletter/provider-notes.md`.
    There is no `.gitignore`-style protection for served paths.
 2. **Git history is permanent.** Deleting a committed secret in a later commit
    does not remove it from history.

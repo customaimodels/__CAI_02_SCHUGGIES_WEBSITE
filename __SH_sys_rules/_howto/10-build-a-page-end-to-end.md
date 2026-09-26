@@ -80,7 +80,7 @@ Open the new file. Change only the marked lines:
 ✅ 152 characters. What · where · why you.
 
 ```html
-<link rel="canonical" href="https://schuggies.caitryapps.com/pages/leicester-ceilidh-band.html">
+<link rel="canonical" href="https://www.schuggies-ceilidhs.co.uk/pages/leicester-ceilidh-band.html">
 <meta property="og:title" content="Ceilidh Band in Leicester for Weddings">
 <meta property="og:description" content="Every dance called, so nobody needs experience. Guide prices from £877, locked until 2029.">
 ```
