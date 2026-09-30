@@ -18,7 +18,7 @@ everywhere. Change the token, change the whole site.
 ### Oxblood — deep red
 | Token | Value | Used for |
 |---|---|---|
-| `--oxblood` | `#5e1119` | The chat bubble |
+| `--oxblood` | `#5e1119` | Was the chat bubble — unused since it was removed (2026-09-26) |
 | `--oxblood-dark` | `#400b11` | Its hover state |
 
 ### Ceilidh green — the booking journey
@@ -78,7 +78,7 @@ numerals. It's not used anywhere else.
 
 | Token | Value | Used on |
 |---|---|---|
-| `--radius-sm` | 12px | Inputs, small tiles, chat bubbles |
+| `--radius-sm` | 12px | Inputs, small tiles |
 | `--radius` | 14px | General purpose |
 | `--radius-lg` | 22px | Cards, panels, quotes, video |
 | `999px` | — | Buttons, pills, tags |

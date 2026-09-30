@@ -3,14 +3,14 @@
 ## Content
 
 - [ ] Prices, event counts and the price-lock year agree across the home page,
-      prices page, FAQs, chatbot **and** the top bar.
+      prices page, FAQs, the price blog post **and** the top bar.
 - [ ] Any guide price is qualified with the postcode note (NG, LE, DE).
 - [ ] Spelling and grammar checked. UK spelling.
 - [ ] No placeholder text anywhere.
 
 ## Cache-buster
 
-- [ ] Did you change `styles.css`, `main.js`, `chatbot.js`, or replace a photo
+- [ ] Did you change `styles.css`, `main.js`, or replace a photo
       keeping its filename? → **you must roll the `?b=` number.**
 - [ ] Rolled it in **every** page:
 

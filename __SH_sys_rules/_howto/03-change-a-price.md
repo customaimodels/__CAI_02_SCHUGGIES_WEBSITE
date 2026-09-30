@@ -1,44 +1,31 @@
 # How to change a price
 
 ⚠️ **The most dangerous edit on the site.** Not because it's hard — because it's
-easy to change it in three places and miss the other two, and then your chatbot
-quotes one price while your price page shows another. That costs bookings and
+easy to change it in three places and miss the fourth, and then your FAQs
+quote one price while your price page shows another. That costs bookings and
 looks unprofessional.
 
-**Do all five. In one sitting. Then check.**
+**Do all four. In one sitting. Then check.**
 
 ---
 
-## The five places a price lives
+## The four files a price lives in
 
 ### 1. `pages/prices.html`
-The price guide cards. Both the top banner and the detailed section lower down —
-**the prices appear twice on this page.** Search the file for the old number and
-fix every hit.
+The meta description in the `<head>` and the price guide cards — **each price
+appears twice in this file.** Search it for the old number and fix every hit.
 
 ### 2. `index.html`
-The hero badges and the locked-prices band near the top.
+The meta description in the `<head>` and the "What you need to know" list.
 
 ### 3. `pages/faqs.html`
-Search for the old figure and for the year. Several answers mention both.
+The FAQ schema in the `<head>` (what Google shows) **and** the answers on the
+page. Search for the old figure and for the year. Several answers mention both.
 
-### 4. `assets/js/chatbot.js` — **two separate places in this file**
+### 4. `pages/blog/how-much-does-a-ceilidh-band-cost.html`
+The DJ and band prices, in the cost list.
 
-**a) The bot's brain**, near the top:
-```javascript
-"...Ceilidh DJ from £877, live band from £1,597, Whole of the Moon from £4,927;
-prices locked to 2029..."
-```
-
-**b) The answer bank** (`KB`), further down — the pricing answer:
-```javascript
-{ keys: ["price","cost","how much", ...],
-  a: "Here's the guide pricing (locked until 2029):\n• Ceilidh DJ set — from £877..." },
-```
-
-Miss either one and the bot contradicts your website.
-
-### 5. `assets/js/main.js`
+### If the lock year changes: `assets/js/main.js`
 The top bar: `'💷 Prices locked until 2029'`
 
 ---
@@ -77,12 +64,11 @@ together. Read each one before changing it rather than replacing blindly.
 
 - [ ] `grep` for the old figure returns nothing.
 - [ ] Home page hero badge, price page, and FAQs all agree.
-- [ ] Open the chat bubble and ask it "how much?" — the answer matches.
-- [ ] Ask it "when are prices locked until?" — that matches too.
+- [ ] The price blog post matches too.
 
 ---
 
 ## Then deploy
 
-You changed `main.js` and `chatbot.js`, so **you must roll the cache-buster**.
-See `08-deploy-a-change.md`. Skip it and visitors see old prices for hours.
+Pages only? No roll needed. Changed the year in `main.js`? **You must roll the
+cache-buster.** See `08-deploy-a-change.md`.

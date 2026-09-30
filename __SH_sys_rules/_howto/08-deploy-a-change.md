@@ -8,11 +8,12 @@ that wastes an afternoon, and it's easy to avoid once you know.
 ## How your site reaches people
 
 ```
-Your folder  →  GitHub  →  Railway (the real server)  →  Cloudflare  →  Visitor
+Your folder  →  GitHub  →  Railway (the real server)  →  Visitor
 ```
 
-Cloudflare keeps copies of your files so the site is fast worldwide. That's good
-— until you change something and it keeps handing out yesterday's copy.
+Nothing sits in between. But every visitor's browser keeps a copy of your style
+and script files for up to 5 minutes. That's good — until you change something
+and it keeps showing yesterday's copy.
 
 That's what the `?b=` number solves.
 
@@ -23,8 +24,8 @@ That's what the `?b=` number solves.
 Look at the bottom of any page:
 
 ```html
-<link rel="stylesheet" href="assets/css/styles.css?b=49">
-<script src="assets/js/main.js?b=49"></script>
+<link rel="stylesheet" href="assets/css/styles.css?b=65">
+<script src="assets/js/main.js?b=65"></script>
 ```
 
 One number, shared by the whole site. **It changes every deploy, so never trust
@@ -34,7 +35,7 @@ a number written down — look it up:**
 grep -o 'styles.css?b=[0-9]*' index.html
 ```
 
-Changing that number makes it a brand new address as far as Cloudflare is
+Changing that number makes it a brand new address as far as every browser is
 concerned, so it fetches a fresh copy.
 
 ### When to roll it
@@ -43,7 +44,6 @@ concerned, so it fetches a fresh copy.
 |---|---|
 | `styles.css` | **Yes** |
 | `main.js` | **Yes** |
-| `chatbot.js` | **Yes** |
 | A photo, keeping the same filename | **Yes** |
 | Words on a page | No |
 | A brand new page | No |
@@ -70,12 +70,11 @@ missed — fix them before continuing.
 
 **Never roll the number before your new files are actually on the server.**
 
-If you do, Cloudflare goes looking for `styles.css?b=50`, finds the *old* file
-still sitting there, and saves *that* under the new name. Now the old version is
-stuck under the new number, and purging the cache doesn't help — you have to roll
-to 51 to escape it.
+If you do, browsers go looking for `styles.css?b=66`, find the *old* file still
+sitting there, and keep *that* under the new name. Now the old version is stuck
+under the new number — you have to roll to 67 to escape it.
 
-This has happened before. It's why the number is at 49 and not 5.
+This has happened before. It's part of why the number is at 65 and not 5.
 
 **The safe order, every time:**
 
@@ -104,12 +103,13 @@ Then wait. Railway takes a few minutes to build.
 ## Checking it worked
 
 ```bash
-curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
+curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/js/main.js?b=<your new number>" | head -1
+curl -sI "https://www.schuggies-ceilidhs.co.uk/api/health" | head -1
 ```
 
-- `MISS` on the first check — **correct**. It fetched a fresh copy.
-- `HIT` with a big `age` on a number you just created — the cache got poisoned.
-  Roll to the next number and push again.
+- Both say `200` — **correct**. It's live.
+- Anything else — Railway hasn't finished, or the build failed. Check the
+  dashboard.
 
 Then open the site in a **private/incognito window** — your own browser holds
 copies too, and will happily lie to you about whether the change worked.
@@ -121,7 +121,7 @@ copies too, and will happily lie to you about whether the change worked.
 - [ ] Home page and one inner page, on desktop and phone.
 - [ ] The thing you changed is actually changed.
 - [ ] Menu and footer links work.
-- [ ] WhatsApp and chat bubbles show and work.
+- [ ] WhatsApp and back-to-top buttons show and work.
 - [ ] No error messages in the browser console (F12 → Console).
 
 ---

@@ -14,7 +14,7 @@ site.
 ## Facts that must stay consistent everywhere
 
 These appear on the home hero, the price guide, the FAQs, the footer blurb and
-the chatbot's knowledge base. **If one changes, change all of them in the same
+the price blog post. **If one changes, change all of them in the same
 commit.**
 
 | Fact | Value |
@@ -45,12 +45,12 @@ price bare.
 
 ## The alignment rule
 
-Anything promised in the FAQs must not contradict the chatbot or the price guide.
+Anything promised in the FAQs must not contradict the price guide.
 When offers, prices or coverage change, update **together**:
 
 - `pages/faqs.html`
 - `pages/prices.html`
-- `assets/js/chatbot.js` (both `CONFIG.system` and the `KB` entries)
+- `pages/blog/how-much-does-a-ceilidh-band-cost.html`
 - `index.html` hero badges + locked-prices section
 - the footer blurb in `main.js`
 

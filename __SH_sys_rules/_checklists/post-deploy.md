@@ -6,12 +6,15 @@ your normal browser keeps its own copies and will lie to you.
 ## Did it actually deploy?
 
 ```bash
-curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=<your new number>" | grep -i 'cf-cache-status'
+SITE=https://www.schuggies-ceilidhs.co.uk
+curl -sI "$SITE/assets/js/main.js?b=<your new number>" | head -1
+curl -sI "$SITE/api/health" | head -1
+for p in /_SH_data_in/ /README.md /.git/config /server.js; do curl -sI "$SITE$p" | head -1; done
 ```
 
-- [ ] Says `MISS` on the first check. That's correct.
-- [ ] If it says `HIT` with a large `age` on a number you just created, the
-      cache is poisoned — roll to the next number and push again.
+- [ ] `main.js?b=<your new number>` says `200`.
+- [ ] `/api/health` says `200`.
+- [ ] All four private paths say `404`. Anything else — stop and fix it first.
 
 ## The site
 
@@ -29,8 +32,7 @@ curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=<your new
 ## The bits that float
 
 - [ ] WhatsApp bubble opens WhatsApp with the right number.
-- [ ] Chat bubble opens, answers a question, closes.
-- [ ] After closing the chat, footer links still click.
+- [ ] Footer links still click — no floater covering them.
 - [ ] Scroll-to-top appears and works.
 
 ## Under the bonnet

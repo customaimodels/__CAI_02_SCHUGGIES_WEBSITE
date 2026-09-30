@@ -13,8 +13,7 @@ screens get extra columns added.
 Below 700px the site is in "phone mode":
 
 - The hero gets shorter (and its photo switches to the square crop).
-- The chat bubble moves from bottom-left to bottom-right.
-- The three floating buttons stack up the right-hand edge.
+- The two floating buttons stack up the right-hand edge.
 - Hero buttons arrange themselves two-by-two.
 
 **If you're testing one width only, test below this.**

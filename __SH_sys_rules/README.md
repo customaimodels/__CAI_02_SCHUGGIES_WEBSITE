@@ -23,8 +23,8 @@ __SH_sys_rules/
 ├── 04-js-architecture.md ········ what main.js does, and its limits
 ├── 05-content-style-voice.md ···· tone, and the facts that must stay consistent
 ├── 06-images-and-media.md ······· photography pipeline and standards
-├── 07-chatbot-and-floaters.md ··· chat, WhatsApp, the bottom-corner buttons
-├── 08-deploy-and-cache-busting.md  Railway + Cloudflare, in the right order
+├── 07-chatbot-and-floaters.md ··· WhatsApp + back-to-top (chatbot removed)
+├── 08-deploy-and-cache-busting.md  Railway direct, in the right order
 ├── 09-accessibility-and-mobile.md  focus, tap targets, motion, testing
 ├── 10-layout-templates.md ······· how each type of page is structured
 ├── 11-review-checklists.md ······ the full review passes
@@ -35,11 +35,11 @@ __SH_sys_rules/
 ├── _howto/ ······················ ⭐ step-by-step recipes — start here for jobs
 │   ├── 01-add-a-new-page.md
 │   ├── 02-add-a-blog-post.md
-│   ├── 03-change-a-price.md ····· ⚠️ touches 5 files — follow it exactly
+│   ├── 03-change-a-price.md ····· ⚠️ touches 4 files — follow it exactly
 │   ├── 04-swap-a-photo.md
 │   ├── 05-change-contact-details.md
 │   ├── 06-change-the-menu.md
-│   ├── 07-update-the-chatbot.md
+│   ├── 07-update-the-chatbot.md ·· removed 2026-09-26
 │   ├── 08-deploy-a-change.md ···· read before your first deploy
 │   ├── 09-when-something-breaks.md
 │   └── 10-build-a-page-end-to-end.md ⭐ one full job, every keystroke
@@ -104,11 +104,11 @@ First line: `git revert HEAD && git push`. Nothing here is unrecoverable.
 2. **Never edit the menu or footer on a page.** They're built once in
    `main.js` and appear on all 60+ pages automatically.
 3. **Change the look, roll the number.** Edited CSS or JS? Bump `?b=` on every
-   page, or visitors keep seeing the old version for hours.
+   page, or visitors keep seeing the old version.
 4. **Check it at 390px.** Most visitors are on a phone. `_checklists/phone-qa.md`.
-5. **Keep the facts aligned.** A price appears in five places — two of them
-   inside the chatbot. Change all five, or the bot ends up contradicting the
-   price page. `_reference/facts-sheet.md` lists every one.
+5. **Keep the facts aligned.** A price appears in four files — home, prices,
+   FAQs and the price blog post. Change them all, or one page ends up
+   contradicting another. `_reference/facts-sheet.md` lists every one.
 
 ---
 
@@ -135,8 +135,7 @@ First line: `git revert HEAD && git push`. Nothing here is unrecoverable.
 
 - `index.html`, and every page in `pages/` and `pages/blog/`
 - `assets/css/styles.css` — the only stylesheet
-- `assets/js/main.js` — header, footer, menu, floaters, contact details
-- `assets/js/chatbot.js` — "Ask Schuggie"
+- `assets/js/main.js` — header, footer, menu, floaters, contact details, contact form
 
 **Note on the project root `README.md`:** it's the original migration readme and
 has drifted — it still lists a `--purple` colour that no longer exists. Where the

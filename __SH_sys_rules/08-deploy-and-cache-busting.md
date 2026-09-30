@@ -1,10 +1,11 @@
 # 08 — Deploy, Cache Busting & Environments
 
 Static site → **Railway** (project CAI_02_SCHUGGIES_WEBSITE, service `schuggies`) →
-`www.schuggies-ceilidhs.co.uk` (DNS at 20i/StackCP, run by Ash). There is no CDN in
-front any more: files carry `Cache-Control: max-age=300`, so browsers hold CSS/JS for
-up to 5 minutes. A change nobody can see is almost always a cache problem — roll `?b=`.
-(Sections below that mention Cloudflare are history from the old preview host.)
+`www.schuggies-ceilidhs.co.uk` (DNS at 20i/StackCP, run by Ash). Railway builds with
+Nixpacks and runs `node server.js` (`npm start`); health check `/api/health`. There is
+no CDN: files carry `Cache-Control: max-age=300`, so browsers hold CSS/JS for up to
+5 minutes. `?b=` beats that. A change nobody can see is almost always a cache
+problem — roll `?b=`.
 
 ---
 
@@ -13,8 +14,8 @@ up to 5 minutes. A change nobody can see is almost always a cache problem — ro
 CSS, JS and key images are cache-busted with a `?b=<number>` query parameter:
 
 ```html
-<link rel="stylesheet" href="assets/css/styles.css?b=49">
-<script src="assets/js/main.js?b=49"></script>
+<link rel="stylesheet" href="assets/css/styles.css?b=65">
+<script src="assets/js/main.js?b=65"></script>
 ```
 
 It is one shared counter, not per-file.
@@ -45,20 +46,16 @@ grep -rn "b=$OLD" index.html pages/ assets/js/     # should return nothing
 
 ---
 
-## 2. Deployment sequence (Railway + Cloudflare)
+## 2. Deployment sequence (Railway direct)
 
-To avoid poisoning the CDN cache:
+1. **Push code and the bumped `?b=` in one commit.** The server gets the new file
+   and the new number at the same moment.
+2. **Wait for the Railway deploy to finish** — health check `/api/health` green.
+3. **Verify** (section 4). Nothing to purge: there is no CDN.
 
-1. **Push code** and **wait for the Railway deploy to finish**, so the origin
-   actually holds the new file.
-2. **Verify on the origin** — hit the Railway URL directly, bypassing Cloudflare,
-   and confirm the new bytes are there.
-3. **Only then** update `?b=` values and/or purge the relevant Cloudflare entries.
-
-If you bump `?b=` before Railway is done, Cloudflare caches the **old** file
-under the **new** key. That is a poisoned cache: it survives a purge of the old
-URL and needs yet another bump to escape. This has happened before — it is the
-reason the counter is at 49.
+If a bumped `?b=` goes live before the file it points at, browsers hold the
+**old** file under the **new** key for up to 5 minutes. Bump again to escape.
+This has happened before — it is part of why the counter is at 65.
 
 ---
 
@@ -75,13 +72,17 @@ reason the counter is at 49.
 ## 4. Verifying a deploy
 
 ```bash
-curl -sI "https://www.schuggies-ceilidhs.co.uk/assets/css/styles.css?b=NN" \
-  | grep -i 'cf-cache-status\|age\|last-modified'
+SITE=https://www.schuggies-ceilidhs.co.uk
+curl -sI "$SITE/assets/js/main.js?b=NN" | head -1      # 200
+curl -sI "$SITE/api/health"             | head -1      # 200
+for p in /_SH_data_in/ /README.md /.git/config /server.js; do
+  curl -sI "$SITE$p" | head -1                         # 404, every one
+done
 ```
 
-- `cf-cache-status: MISS` on the first hit of a new number is **correct**.
-- A `HIT` with a large `age` on a number you just introduced means the cache was
-  poisoned — bump again.
+- `200` on `main.js?b=NN` and `/api/health` — the deploy is live.
+- Any private path answering anything but `404` — stop; the server is publishing
+  what it shouldn't.
 
 ---
 
@@ -92,8 +93,8 @@ desktop and on a real phone. Check:
 
 - [ ] Nav and footer links go to the **new static pages**, not old WordPress URLs.
 - [ ] Hero images are sharp, not pixelated.
-- [ ] WhatsApp + chatbot floaters are correctly positioned and clickable.
-- [ ] Scroll-to-top appears after one viewport and sits above both bubbles.
+- [ ] WhatsApp + back-to-top floaters are correctly positioned and clickable.
+- [ ] Scroll-to-top appears after one viewport and sits above WhatsApp.
 - [ ] Browser console shows no 404s for CSS/JS/images.
 
 ---

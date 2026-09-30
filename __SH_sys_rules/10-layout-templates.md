@@ -64,7 +64,7 @@ colour, calmer imagery. It is a supporting line of work, not a headline one.
 - Group questions into logical blocks using `.faq-group`: planning, money,
   travel, experience.
 - Use the `.acc` accordion component. **Never a raw list of `<p>` Q&A.**
-- Every answer must stay in sync with `chatbot.js` — see
+- Every answer must stay in sync with the price page — see
   `05-content-style-voice.md` for the alignment rule.
 
 ---

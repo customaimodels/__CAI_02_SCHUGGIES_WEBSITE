@@ -18,8 +18,8 @@ phone view (F12, then the little phone icon), set to **390px wide**.
 ## 2. The bottom of the page
 
 - [ ] Every footer link is tappable — no bubble sitting over one.
-- [ ] The WhatsApp and chat bubbles are in the right corner, not overlapping.
-- [ ] Scroll-to-top appears once you've scrolled, above both bubbles.
+- [ ] WhatsApp is in the bottom-right corner, not overlapping anything.
+- [ ] Scroll-to-top appears once you've scrolled, above WhatsApp.
 
 ## 3. The menu
 
@@ -28,15 +28,7 @@ phone view (F12, then the little phone icon), set to **390px wide**.
 - [ ] The close button is easy to hit and doesn't sit on top of text.
 - [ ] If the list is long, it scrolls.
 
-## 4. The chat bubble
-
-- [ ] Tap it — the panel opens at a usable size, not the whole screen.
-- [ ] The WhatsApp bubble disappears while chat is open.
-- [ ] You can still scroll the page behind the panel.
-- [ ] Close it — **the footer links still work.**
-      *(If they don't, something's broken. See `09-when-something-breaks.md`.)*
-
-## 5. One inner page
+## 4. One inner page
 
 Pick Prices or Weddings.
 

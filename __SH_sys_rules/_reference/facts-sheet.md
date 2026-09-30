@@ -3,7 +3,7 @@
 **Every number and claim on the website, in one place.**
 
 When any of these changes, it changes *here first*, then everywhere in the
-right-hand column, in one sitting. This sheet is what stops the chatbot quoting
+right-hand column, in one sitting. This sheet is what stops the FAQs quoting
 one price while the price page shows another.
 
 ---
@@ -15,7 +15,7 @@ one price while the price page shows another.
 | Trading name | Schuggies-Ceilidhs | everywhere |
 | Legal name | Schuggies-Ceilidhs Limited | footer |
 | Company number | 12395804 | footer |
-| Trading since | 2008 | home badges, about, chatbot |
+| Trading since | 2008 | home badges, about |
 | Address | Suite 69, Sneinton Market Unit 6, Gedling Street, Nottingham, NG1 1DS | `main.js` → `SITE.address`, contact page |
 | Phone | 01332 498839 | `main.js` → `SITE.phone` + `SITE.phoneHref` |
 | Email | info@schuggies-ceilidhs.co.uk | `main.js` → `SITE.email` |
@@ -27,8 +27,8 @@ one price while the price page shows another.
 
 | Fact | Value | Appears in |
 |---|---|---|
-| Events hosted | **550+** | home hero badge, about, footer blurb, chatbot |
-| Weddings | **220+** | home hero badge, about, footer blurb, chatbot |
+| Events hosted | **550+** | home hero badge, about, footer blurb |
+| Weddings | **220+** | home hero badge, about, footer blurb |
 
 ⚠️ These two appear in the footer blurb inside `main.js` as prose — "Over 550
 events, 220+ weddings" — which is easy to miss when searching.
@@ -39,9 +39,9 @@ events, 220+ weddings" — which is easy to miss when searching.
 
 | Package | From | Appears in |
 |---|---|---|
-| Ceilidh DJ set | **£877** | prices (×2), chatbot (×2) |
-| Live ceilidh band | **£1,597** | prices (×2), chatbot (×2) |
-| The Whole of the Moon | **£4,927** | prices (×2), chatbot (×2) |
+| Ceilidh DJ set | **£877** | home (×2), prices (×2), faqs (×3), blog/how-much-does-a-ceilidh-band-cost |
+| Live ceilidh band | **£1,597** | home (×2), prices (×2), faqs (×2), blog/how-much-does-a-ceilidh-band-cost |
+| The Whole of the Moon | **£4,927** | home, prices (×2), faqs |
 
 **The Whole of the Moon is a ladder, not one price:**
 
@@ -53,7 +53,7 @@ events, 220+ weddings" — which is easy to miss when searching.
 
 | Fact | Value | Appears in |
 |---|---|---|
-| Price lock | **until 2029** | home ×3, prices ×7, faqs ×2, chatbot ×3, top bar |
+| Price lock | **until 2029** | home ×3, prices ×7, faqs ×2, top bar |
 | Booking years covered | 2027 · 2028 · 2029 | home, prices, offer pages |
 
 ---

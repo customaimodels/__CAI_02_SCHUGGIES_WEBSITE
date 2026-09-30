@@ -20,10 +20,7 @@
 
 Keep what's already there:
 
-- `aria-label` on the chat button, close button, scroll-to-top, nav toggle,
-  WhatsApp link, and the chat input/send controls.
-- `role="dialog"` + `aria-label` on the chatbot panel, `aria-live="polite"` on
-  the message log.
+- `aria-label` on the close button, scroll-to-top, nav toggle and WhatsApp link.
 - `aria-expanded` on the mobile nav toggle and the FAQ accordions.
 - `aria-current="page"` on the active nav item — generated automatically, never
   written by hand.

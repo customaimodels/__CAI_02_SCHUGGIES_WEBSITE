@@ -22,7 +22,7 @@ Print these. Work through them.
 ## B. When touching copy
 
 - [ ] Prices, event counts, coverage area and the 2029 lock are consistent
-      across **home, prices, FAQs, chatbot and the footer blurb**.
+      across **home, prices, FAQs, the price blog post and the footer blurb**.
 - [ ] Guide prices are qualified with the NG/LE/DE postcode note — never quoted bare.
 - [ ] Tone is friendly, non-corporate, straightforward. No "bespoke", no
       "elevate", no "unforgettable experience".
@@ -38,8 +38,10 @@ Print these. Work through them.
 - [ ] `?b=` bumped for any changed CSS / JS / major image — in **every** file
       that references it.
 - [ ] `grep -rn "b=<old>" index.html pages/ assets/js/` returns nothing.
-- [ ] Railway deploy **finished**; new assets confirmed on the origin.
-- [ ] Only then: Cloudflare purged / new `?b=` requested.
+- [ ] Files and the new `?b=` pushed in **one** commit.
+- [ ] Railway deploy **finished**; `/api/health` answers `200`.
+- [ ] `main.js?b=<new>` answers `200`; `/_SH_data_in/`, `/README.md`,
+      `/.git/config`, `/server.js` all answer `404`.
 - [ ] HTML, `styles.css` and `main.js` shipped as one coherent batch.
 
 ---
@@ -50,9 +52,8 @@ Print these. Work through them.
 - [ ] Nav links all resolve — nothing pointing at the old WordPress site.
 - [ ] Footer links (both columns) resolve.
 - [ ] WhatsApp bubble opens WhatsApp.
-- [ ] Chat bubble opens, answers a question, closes — and the footer links still
-      click afterwards.
-- [ ] Scroll-to-top appears after one viewport, sits above both bubbles.
+- [ ] Footer links still click — no floater covering them.
+- [ ] Scroll-to-top appears after one viewport, sits above WhatsApp.
 - [ ] Console: no 404s, no errors.
 - [ ] Hero image sharp on a phone.
 

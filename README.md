@@ -15,7 +15,7 @@ website/
 │   ├── prices.html         # Prices, packages & options
 │   ├── about.html          # Meet Schuggie
 │   ├── faqs.html           # Accordion FAQs
-│   ├── contact.html        # Contact form + details
+│   ├── contact.html        # Contact form (opens visitor's email app) + details
 │   ├── privacy.html        # ⚠️ placeholder legal text
 │   └── terms.html          # ⚠️ placeholder legal text
 ├── assets/
@@ -101,14 +101,14 @@ to 2400 adds bytes and no detail.
 
 ### The `?b=` cache-buster — the step people forget
 
-Every page links `styles.css?b=NN` and `main.js?b=NN`. Cloudflare caches assets for
-four hours, so **after any change to CSS, JS or an image, bump that number across
+Every page links `styles.css?b=NN` and `main.js?b=NN` (currently 65). There is no CDN;
+browsers cache assets for 5 minutes, so **after any change to CSS, JS or an image, bump that number across
 every page** or the old version keeps being served:
 
 ```bash
-# from the site root — replace 40 with the current number, 41 with the next
-grep -rlE '(styles\.css|main\.js)\?b=40' index.html pages/ \
-  | xargs sed -i '' -E 's/(styles\.css|main\.js)\?b=40/\1?b=41/g'
+# from the site root — replace 65 with the current number, 66 with the next
+grep -rlE '(styles\.css|main\.js)\?b=65' index.html pages/ \
+  | xargs sed -i '' -E 's/(styles\.css|main\.js)\?b=65/\1?b=66/g'
 ```
 
 Images referenced by a *new filename* do not need this — a new name is already a
@@ -116,8 +116,10 @@ new URL. It matters when you overwrite a file that keeps its name.
 
 ### Deploying
 
-Railway auto-deploys from GitHub `main`. `git push` and it is live in about 30
-seconds. There is no build step.
+Railway auto-deploys from GitHub `main` — direct, no CDN (Nixpacks, `node server.js`,
+health check `/api/health`). `git push` and it is live in about 30
+seconds. There is no build step. Verify: `main.js?b=NN` and `/api/health` answer 200;
+`/_SH_data_in/`, `/README.md`, `/.git/config`, `/server.js` answer 404.
 
 ## Checking on a phone
 
@@ -167,7 +169,7 @@ closed drawer and is meant to be off-canvas.
 
 - [ ] Swap placeholder image blocks for real photos (logo, hero, gallery, Schuggie portrait).
 - [ ] Update the WhatsApp number in `SITE.whatsapp` (currently a guess based on the landline).
-- [ ] Wire the contact form to a real endpoint (Formspree / Netlify Forms / email service). Currently front-end demo only.
+- [x] Contact form opens the visitor's email app via `mailto:` to info@schuggies-ceilidhs.co.uk. No backend; it never claims "sent".
 - [ ] Replace placeholder Privacy & Terms with reviewed legal text.
 - [ ] Add real testimonials (current ones are representative placeholders).
 - [ ] Add favicon + OG share image.

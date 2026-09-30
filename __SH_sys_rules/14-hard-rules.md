@@ -17,17 +17,16 @@ auditing every file.
 **Instead:** edit `NAV` or `buildFooter()` in `main.js`. Once.
 
 ### 2. Never bump `?b=` and push it before the files it points at
-**What happens:** Cloudflare fetches the new address, finds the *old* file still
-on the server, and caches that under the new name. Purging doesn't clear it. You
+**What happens:** visitors' browsers fetch the new address, get the *old* file
+still on the server, and hold it for up to 5 minutes under the new name. You
 have to bump again to escape. This has happened here — it's why the counter is
-in the forties, not the single digits.
+in the sixties, not the single digits.
 **Instead:** push everything in one commit. Files and number together.
 
-### 3. Never remove `.cbot__panel[hidden] { display: none; }`
-**What happens:** the closed chat panel stays in the layout as an invisible
-353×510 rectangle over the bottom-left corner, swallowing every click behind it.
-Footer links stop working sitewide and nothing on screen explains why.
-**This has happened.** Leave the rule alone.
+### 3. Never hand-write the floating buttons into a page
+**What happens:** WhatsApp and back-to-top are built by `main.js` on every page.
+Write one into a page and you get two, stacked on each other. (The chatbot was
+removed on 2026-09-26 — there is no chat panel any more.)
 
 ### 4. Never reduce the footer's bottom padding
 **What happens:** the floating buttons are fixed to the screen, so at the bottom
@@ -55,9 +54,9 @@ visitors learn it in seconds. Use it for a second purpose and it means nothing.
 the ability to see where they are on the page.
 **If it looks wrong on your component, fix the component's padding.**
 
-### 9. Never add a second script tag for the chatbot
-**What happens:** `main.js` already injects it. Add another and you get two chat
-bubbles stacked on each other.
+### 9. Never add a second script tag
+**What happens:** `main.js` is the only script a page loads. The chatbot that
+once rode alongside it was removed on 2026-09-26 — don't bring back its tag.
 
 ### 10. The site's one address is `https://www.schuggies-ceilidhs.co.uk`
 **What happens otherwise:** Google splits the site across two addresses, and
@@ -86,7 +85,7 @@ each one is a permanent tax on every visitor. Solve it with what's here.
 It means the rule is in the wrong section of the stylesheet. Move it instead.
 
 ### 15. Don't set a `z-index` outside the existing band
-Chat is 130, scroll-to-top is 125, the mobile drawer is 200. Slot in. `9999`
+Scroll-to-top is 125, WhatsApp 120, the mobile drawer is 200. Slot in. `9999`
 means the next person needs `10000`.
 
 ### 16. Don't make the phone hero taller
@@ -105,20 +104,24 @@ Four is already the ceiling. A fifth means none of them are the primary.
 
 ## Content rules — these cost money when broken
 
-### 19. Never change a price in fewer than five places
-It lives in `prices.html`, `index.html`, `faqs.html`, and **twice** in
-`chatbot.js`, plus the top bar in `main.js`.
-**What happens:** the bot quotes £877 while the page says £900. The visitor
-notices before you do, and they were about to book.
+### 19. Never change a price in fewer than four files
+It lives in `index.html` (meta description + "What you need to know" list),
+`prices.html` (meta description + price cards), `faqs.html` (FAQ schema + two
+answers) and `blog/how-much-does-a-ceilidh-band-cost.html`. The price-lock year
+also sits in the top bar in `main.js`.
+**What happens:** the FAQ quotes £877 while the page says £900 — and Google
+shows the stale one from the meta or schema. The visitor notices before you do,
+and they were about to book.
 
 ### 20. Never quote a guide price without the postcode note
 "From £877" without "East Midlands — NG, LE, DE postcodes" sets an expectation
 you then have to walk back on a call. That conversation loses bookings.
 
-### 21. Never let the chatbot invent anything
-No prices it hasn't been given, no availability, no promises about dates. If it
-doesn't know, it points at a chat. A confident wrong answer is worse than no
-answer.
+### 21. Never let the site promise what Schuggie hasn't
+No prices that aren't on the facts sheet, no availability, no promises about
+dates. The chatbot that could invent them was removed on 2026-09-26; the rule
+stands for every page. Unsure → point at a chat. A confident wrong answer is
+worse than no answer.
 
 ### 22. Never change a Calendly link in only one place
 **What happens:** 78 pages hardcode the full booking URL, so changing it in

@@ -17,23 +17,19 @@ A screen width where the layout changes. Our main one is **700px**: below it the
 site behaves like a phone, above it like a desktop.
 
 **Cache / cached**
-A saved copy. Your visitor's browser and Cloudflare both keep copies of your
-files so pages load fast. The downside: after you change something they may keep
+A saved copy. Your visitor's browser keeps copies of your files for up to 5
+minutes so pages load fast. The downside: after you change something they may keep
 showing the old copy. That's what the cache-buster fixes.
 
 **Cache-buster**
-The `?b=49` on the end of `styles.css?b=49`. Changing that number makes every
-browser and server treat it as a brand-new file. **Roll it whenever you change
+The `?b=65` on the end of `styles.css?b=65`. Changing that number makes every
+browser treat it as a brand-new file. **Roll it whenever you change
 the look or behaviour of the site.**
 
 **Class**
 A label on an element that tells the style file how to draw it.
 In `<div class="card">`, `card` is the class — it makes that box look like a
 card. Reusing classes is how the site stays consistent.
-
-**Cloudflare**
-The service sitting between your visitors and your website. It makes the site
-fast worldwide by keeping copies. See `08-deploy-and-cache-busting.md`.
 
 **CSS**
 The language in `styles.css` that controls appearance — colours, sizes, spacing.
@@ -62,15 +58,15 @@ sees.
 The language pages are written in. It's just words wrapped in tags.
 
 **JavaScript / JS**
-The code in `main.js` and `chatbot.js` that makes things *do* things — open the
-menu, show the chat, build the footer.
+The code in `main.js` that makes things *do* things — open the menu, build the
+footer, hand the contact form to the visitor's email app.
 
 **Meta description**
 The sentence Google shows under your page title in search results. It's in the
 `<head>` of each page. Worth writing well.
 
 **Origin**
-Your actual server (Railway), as opposed to the cached copies Cloudflare serves.
+Your actual server (Railway), as opposed to the cached copies in visitors' browsers.
 
 **Railway**
 The service that hosts your website's real files.

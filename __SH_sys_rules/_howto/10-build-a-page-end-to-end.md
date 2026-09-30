@@ -61,7 +61,7 @@ cp __SH_sys_rules/_templates/page-service.html pages/leicester-ceilidh-band.html
 grep -o 'styles.css?b=[0-9]*' index.html
 ```
 
-Say it prints `styles.css?b=50`. **Remember 50** — you'll need it twice.
+Say it prints `styles.css?b=65`. **Remember 65** — you'll need it twice.
 
 ---
 
@@ -85,7 +85,7 @@ Open the new file. Change only the marked lines:
 <meta property="og:description" content="Every dance called, so nobody needs experience. Guide prices from £877, locked until 2029.">
 ```
 
-Then check both `?b=` lines say `b=50`. Fix them if not.
+Then check both `?b=` lines say `b=65`. Fix them if not.
 
 ---
 
@@ -223,7 +223,7 @@ Work `_checklists/phone-qa.md`. Two minutes.
 You changed `main.js` in step 10. **That means rolling.**
 
 ```bash
-OLD=50; NEW=51
+OLD=65; NEW=66
 grep -rl "b=$OLD" index.html pages/ | xargs sed -i '' "s/b=$OLD/b=$NEW/g"
 grep -rn "b=$OLD" index.html pages/ assets/js/
 ```

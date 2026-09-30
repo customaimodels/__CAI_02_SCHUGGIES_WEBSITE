@@ -18,8 +18,12 @@ _ARCHIVE_original/
 # this would publish a dev tool at /_phone.html. Recreate it from the README.
 _phone.html
 
-# Node deps for the Massie endpoint — Railway installs these at build time.
+# Node deps — the site has none today; kept ignored in case one is ever added.
 node_modules/
 
 # local Claude settings
 .claude/
+
+# Client raw inputs (photos, submissions, PDF) — private, never in git, never served.
+_SH_data_in/
+__SH_sys_rules.zip

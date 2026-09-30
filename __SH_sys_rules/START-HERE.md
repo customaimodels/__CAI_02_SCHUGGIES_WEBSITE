@@ -14,7 +14,7 @@ Your site is made of three kinds of thing:
 2. **One style file** — `assets/css/styles.css`. It decides what everything
    *looks* like. Colours, spacing, fonts. All of it. Once.
 3. **One script file** — `assets/js/main.js`. It builds the menu, the footer,
-   the WhatsApp button and the chat bubble on **every** page automatically.
+   the WhatsApp and back-to-top buttons on **every** page automatically.
 
 That third one is the important bit. **You never edit the menu or the footer on
 a page.** You edit it once in `main.js` and all 60-odd pages update themselves.
@@ -34,10 +34,10 @@ In `<h2>Fill your dancefloor</h2>`, the bit you change is
 words sit in.
 
 **3. If you change the look, roll the number.**
-Every page ends with something like `styles.css?b=49`. That number tells the
+Every page ends with something like `styles.css?b=65`. That number tells the
 internet "this is new, don't show the old one". If you change how things look
-and forget to change the number, **your visitors keep seeing the old version for
-hours** and you'll think you broke something. Full instructions in
+and forget to change the number, **your visitors keep seeing the old version**
+and you'll think you broke something. Full instructions in
 `_howto/08-deploy-a-change.md`.
 
 **4. Check it on your phone before you're done.**
@@ -66,7 +66,6 @@ check.
 | Swap a photo | `_howto/04-swap-a-photo.md` |
 | Change my phone number or email | `_howto/05-change-contact-details.md` |
 | Add or remove a menu item | `_howto/06-change-the-menu.md` |
-| Fix what the chatbot says | `_howto/07-update-the-chatbot.md` |
 | Put my changes live | `_howto/08-deploy-a-change.md` |
 | Fix something that broke | `_howto/09-when-something-breaks.md` |
 | **See** what a component looks like | `_examples/` — open them in a browser |

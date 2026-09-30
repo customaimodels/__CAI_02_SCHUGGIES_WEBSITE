@@ -346,13 +346,25 @@
       if (kind) track(kind, { label: label, href: href });
     }, true);
 
-    // contact form (front-end only demo — replace action with real endpoint)
+    // contact form — no backend: hands the message to the visitor's own email app,
+    // addressed to SITE.email. Never claims "sent"; the visitor presses send.
     var form = document.getElementById("contactForm");
     if (form) form.addEventListener("submit", function(e){
       e.preventDefault();
+      var v = function(id){ var el = form.querySelector("#" + id); return el ? el.value.trim() : ""; };
+      var name = v("name"), contact = v("contact"), msg = v("message");
+      var subject = "Ceilidh enquiry from " + name;
+      var body = msg + "\n\n— " + name + "\n" + contact;
+      track("contact_form", { label: "mailto" });
+      window.location.href = "mailto:" + SITE.email +
+        "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       var note = document.getElementById("formNote");
-      if (note) { note.textContent = "Thanks — your message has been sent. I'll get back to you shortly. For anything urgent, call 01332 498839."; note.style.display="block"; }
-      form.reset();
+      if (note) {
+        note.innerHTML = "Your email app should now open with your message ready — just press send. " +
+          "Nothing opened? Email <a href=\"mailto:" + SITE.email + "\">" + SITE.email + "</a> or call " +
+          "<a href=\"" + SITE.phoneHref + "\">" + SITE.phone + "</a>.";
+        note.style.display = "block";
+      }
     });
   }
 

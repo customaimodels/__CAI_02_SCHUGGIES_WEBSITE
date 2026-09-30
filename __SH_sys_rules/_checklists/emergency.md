@@ -41,8 +41,8 @@ Wait for Railway. The site is back.
 
 1. Try it on mobile data, not your wifi. Still down?
 2. Check the Railway dashboard — is the app running? Did the last build fail?
-3. Check the Cloudflare dashboard.
-4. **If Railway shows a failed build, the previous version is still live** —
+   `curl -sI https://www.schuggies-ceilidhs.co.uk/api/health` should say `200`.
+3. **If Railway shows a failed build, the previous version is still live** —
    so a total outage is usually hosting, not your files. Nothing in this folder
    will fix it. Contact the host.
 
@@ -60,7 +60,7 @@ git add -A && git commit -m "Restore stylesheet" && git push
 **Treat as urgent.** Someone could book at a price you don't honour.
 
 1. `git revert HEAD` and push — get the old prices back up.
-2. Then redo it properly with `_howto/03-change-a-price.md`, all five places.
+2. Then redo it properly with `_howto/03-change-a-price.md`, every place.
 
 ### 🟠 One page broken, rest fine
 
@@ -72,21 +72,15 @@ git checkout -- pages/the-broken-page.html
 
 ### 🟠 Chat bubble gone
 
-Almost certainly a stray quote mark in `chatbot.js`.
-
-```bash
-git checkout -- assets/js/chatbot.js
-```
-
-Then redo the edit, using single quotes inside answers. See `_howto/07-update-the-chatbot.md`.
+Expected. The chatbot was removed on 2026-09-26. Nothing to fix.
 
 ### 🟠 Footer links unclickable
 
-The chat panel is invisibly covering them. Check this rule still exists in
+A floater is covering them. Check the footer's reserved padding still exists in
 `styles.css`:
 
 ```css
-.cbot__panel[hidden] { display: none; }
+.site-footer { padding-bottom: max(6.5rem, calc(env(safe-area-inset-bottom) + 6rem)); }
 ```
 
 ### 🟡 A change isn't showing
@@ -173,8 +167,8 @@ Ask why it wasn't caught:
 |---|---|
 | Live site | www.schuggies-ceilidhs.co.uk |
 | Repo | github.com/vargasyeriko/schuggiesweedings |
-| Host | Railway |
-| CDN | Cloudflare |
+| Host | Railway, direct — no CDN |
+| Health check | `/api/health` → 200 |
 | Undo the last push | `git revert HEAD && git push` |
 
 ---

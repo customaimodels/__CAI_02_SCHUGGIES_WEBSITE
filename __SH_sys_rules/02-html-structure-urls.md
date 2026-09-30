@@ -17,8 +17,8 @@ Every page — `index.html` included — follows exactly this shape:
 
 - The two mount divs are how `main.js` finds its slots. A page missing them
   renders with no header or footer.
-- **`main.js` is the only script tag on a page.** It injects `chatbot.js` itself.
-  Never add a second script tag for the chatbot — you'll get two chat bubbles.
+- **`main.js` is the only script tag on a page.** (The chatbot it once injected
+  was removed on 2026-09-26.)
 - Depth changes the prefix only: `assets/…` at root, `../assets/…` in `pages/`,
   `../../assets/…` in `pages/blog/`.
 

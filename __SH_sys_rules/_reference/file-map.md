@@ -10,8 +10,8 @@
 | The menu | `assets/js/main.js` → `NAV` | `_howto/06-change-the-menu.md` |
 | Footer links | `assets/js/main.js` → `buildFooter()` | `_howto/06-change-the-menu.md` |
 | The top bar message | `assets/js/main.js` → `buildHeader()` | — |
-| What the chatbot says | `assets/js/chatbot.js` | `_howto/07-update-the-chatbot.md` |
-| Prices | 5 files — see the recipe | `_howto/03-change-a-price.md` |
+| ~~What the chatbot says~~ | removed 2026-09-26 — `chatbot.js` is gone | `_howto/07-update-the-chatbot.md` |
+| Prices | 4 files — see the recipe | `_howto/03-change-a-price.md` |
 | A photo | the page + `assets/images/` | `_howto/04-swap-a-photo.md` |
 | Colours, fonts, spacing, any styling | `assets/css/styles.css` | ⚠️ developer job |
 | Newsletter signup provider | `assets/js/main.js` → `SITE.newsletterAction` | `_howto/05-change-contact-details.md` |
@@ -31,7 +31,7 @@ website/
 │   ├── corporate.html
 │   ├── public-ceilidhs.html ··· "Nottingham Ceilidh Club" in the menu
 │   ├── guides.html ············ "Free Wedding Toolkit" in the menu
-│   ├── faqs.html ·············· ⚠️ must agree with the chatbot
+│   ├── faqs.html ·············· ⚠️ must agree with the price page
 │   ├── contact.html ·········· the only page with contact details written in
 │   ├── about.html
 │   ├── testimonials.html
@@ -41,11 +41,10 @@ website/
 │   └── blog/ ················· 56 posts, two folders deep
 ├── assets/
 │   ├── css/styles.css ········ ⚠️ the entire site's appearance. One file.
-│   ├── js/main.js ············ menu, footer, WhatsApp, contact details
-│   ├── js/chatbot.js ········· "Ask Schuggie"
+│   ├── js/main.js ············ menu, footer, WhatsApp, contact details, contact form
 │   ├── images/ ··············· every photo. If it's not here, it's not on the site.
 │   └── fonts/
-├── _SH_data_in/ ·············· original high-res photos. Not published.
+├── _SH_data_in/ ·············· original high-res photos. Not published, not in git.
 └── __SH_sys_rules/ ··········· this handbook
 ```
 
@@ -66,7 +65,7 @@ website/
 ## Two folders that look similar
 
 - **`_SH_data_in/`** — your original, full-size photos and source material.
-  Not published. This is your archive.
+  Not published, and gitignored — never committed. This is your archive.
 - **`assets/images/`** — the web-ready versions. **This is the only folder the
   website reads from.**
 

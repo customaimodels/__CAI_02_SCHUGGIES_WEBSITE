@@ -7,11 +7,11 @@ self-contained — start at step 1, finish at the last step, done.
 |---|---|---|
 | 01 | Add a new page | ●●○ |
 | 02 | Add a blog post | ●○○ |
-| 03 | Change a price | ●●○ — touches 5 files, all listed |
+| 03 | Change a price | ●●○ — touches 4 files, all listed |
 | 04 | Swap a photo | ●●○ |
 | 05 | Change contact details | ●○○ — one file, one place |
 | 06 | Change the menu | ●○○ — one file, one place |
-| 07 | Update the chatbot | ●●○ |
+| 07 | ~~Update the chatbot~~ | removed 2026-09-26 |
 | 08 | Deploy a change | ●●○ — read this before your first deploy |
 | 09 | When something breaks | — |
 | 10 | **The full walkthrough** — a page from nothing to live | ⭐ read once |

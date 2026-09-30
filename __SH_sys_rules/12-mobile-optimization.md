@@ -96,15 +96,14 @@ Breakpoints already in the CSS that matter for mobile:
 
 **Desktop**
 
-- Left: chatbot (`.cbot`). Right: WhatsApp (`.wa-float`). Above WhatsApp:
-  scroll-to-top (`.to-top`), when visible.
+- Right: WhatsApp (`.wa-float`). Above it: scroll-to-top (`.to-top`), when
+  visible. (The chatbot was removed on 2026-09-26.)
 
-**Phones (`max-width: 700px`)** — all three on the right, stacked:
+**Phones (`max-width: 700px`)** — both on the right, stacked:
 
 | Element | Offset from bottom |
 |---|---|
 | WhatsApp | 16px |
-| Chatbot | 90px |
 | Scroll-to-top | 162px |
 
 All plus `env(safe-area-inset-bottom)`.
@@ -116,11 +115,8 @@ All plus `env(safe-area-inset-bottom)`.
   This applies on **desktop too**, not just phones — the floats are fixed to the
   viewport, so at the very bottom of the page they land on the Privacy/Terms bar
   and made both links unclickable before this rule existed. **Do not reduce it.**
-- With the chat panel open, `body.cbot-open` hides WhatsApp **and**
-  scroll-to-top: `opacity: 0; pointer-events: none;` — so a tap can never hit two
-  elements.
 - Any new floating UI (newsletter, offers) respects the same right/bottom
-  offsets, stacks cleanly with the other three, and never sits over footer links
+  offsets, stacks cleanly with the other two, and never sits over footer links
   or form buttons.
 
 **Testing checklist**
@@ -220,7 +216,7 @@ don't "fix" it.
 
 ## 9. Performance & interaction
 
-**Goals:** no jank on scroll, no lag opening the mobile nav or chatbot.
+**Goals:** no jank on scroll, no lag opening the mobile nav.
 
 **Rules**
 
@@ -244,22 +240,15 @@ don't "fix" it.
 
 **2. Scroll to the bottom**
 - [ ] Footer links tappable.
-- [ ] WhatsApp + chat bubbles not covering anything.
-- [ ] Scroll-to-top appears above both bubbles and is tappable.
+- [ ] WhatsApp + scroll-to-top not covering anything.
+- [ ] Scroll-to-top appears above WhatsApp and is tappable.
 
 **3. Open the mobile nav**
 - [ ] All nav links fit, readable, 44px tall.
 - [ ] Close button easy to hit, doesn't overlap text.
 - [ ] Drawer scrolls if the list is long.
 
-**4. Open the chatbot**
-- [ ] Panel height usable — `min(68vh, 480px)` on phones, not the full screen.
-- [ ] WhatsApp bubble hidden **and unclickable** while chat is open.
-- [ ] Page content still scrolls behind the panel.
-- [ ] Close it — footer links still work. (If they don't, the `[hidden]` rule has
-      been broken; see `07-chatbot-and-floaters.md`.)
-
-**5. Test one inner page** (Prices, Weddings)
+**4. Test one inner page** (Prices, Weddings)
 - [ ] Grids collapse cleanly to one column.
 - [ ] Images sharp, not pixelated or stretched.
 - [ ] No orphan headings or stranded CTAs.

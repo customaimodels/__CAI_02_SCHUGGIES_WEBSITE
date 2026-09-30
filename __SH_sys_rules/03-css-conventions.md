@@ -13,7 +13,7 @@ per-instance data (a background image URL, a grid span used once).
 3. **PATTERN LAYER** (line ~160) — the reusable components
 4. Real-image treatments / natural texture
 5. Contact-over-hills section
-6. Chatbot widget (`.cbot*`)
+6. ~~Chatbot widget (`.cbot*`)~~ — chatbot removed 2026-09-26; any `.cbot` rules left are dead
 7. Ceilidh Price Guide (`.pg*`)
 8. **PHONE LAYOUT** — placement rules for ~375–430px
 9. **BOTTOM-EDGE CHOREOGRAPHY** — floater stacking
@@ -66,6 +66,6 @@ load-bearing. Reuse an existing value unless there is a strong, stated reason.
 ## Things not to do
 
 - No `!important` — if you need it, the rule is in the wrong section of the file.
-- No `z-index` free-for-all. The fixed layer is already assigned: chatbot `130`,
-  scroll-to-top `125`, WhatsApp below them. Slot into that, don't invent `9999`.
+- No `z-index` free-for-all. The fixed layer is already assigned:
+  scroll-to-top `125`, WhatsApp `120`. Slot into that, don't invent `9999`.
 - No CSS resets or normalise libraries. The small reset at the top is enough.

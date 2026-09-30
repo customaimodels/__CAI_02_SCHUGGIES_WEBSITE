@@ -77,7 +77,7 @@ Five families and nothing else.
 | Component | Radius |
 |---|---|
 | Buttons, pills, tags, chips | `999px` |
-| Small tiles, inputs, chat bubbles | `--radius-sm` / `--radius` |
+| Small tiles, inputs | `--radius-sm` / `--radius` |
 | Cards, quotes, panels, video frame | `--radius-lg` |
 
 Do not invent a new radius or a one-off shadow recipe. If something looks "off",

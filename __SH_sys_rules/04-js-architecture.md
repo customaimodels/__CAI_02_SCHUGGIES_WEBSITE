@@ -1,13 +1,15 @@
 # JavaScript Architecture
 
-Two files, both plain IIFEs in strict mode, no dependencies.
+One file, a plain IIFE in strict mode, no dependencies.
 
 ## `main.js` responsibilities
 
 - **Builds** the top bar, header + nav, mobile drawer, footer, WhatsApp floater
   and scroll-to-top button, as DOM strings injected on load.
 - **Wires** the mobile drawer, FAQ accordions, scroll reveal (`.reveal`), the
-  contact form demo handler, and click tracking.
+  contact form, and click tracking. The contact form has no backend: it opens
+  the visitor's email app via `mailto:` to `info@schuggies-ceilidhs.co.uk`,
+  pre-filled, and never claims "sent" — the visitor presses send.
 - **Holds the single config**: the `SITE` object at the top — phone, email,
   WhatsApp, Calendly links, postal address, social URLs, newsletter action,
   Amazon affiliate link. Change a phone number once, it changes on every page.
@@ -43,7 +45,7 @@ Click tracking runs through the `track()` helper, which pushes to
 If you add a new conversion action, wire it through `track()` — never an ad-hoc
 `console.log`, never a second analytics path.
 
-## `chatbot.js`
+## `chatbot.js` — removed
 
-Self-contained. Its own config, its own knowledge base, its own markup. See
+Removed on 2026-09-26. Backup in `../dta/_off_massie/`. See
 `07-chatbot-and-floaters.md`.

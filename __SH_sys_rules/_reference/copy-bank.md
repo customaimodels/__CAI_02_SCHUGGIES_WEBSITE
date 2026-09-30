@@ -154,7 +154,7 @@ Copy these character for character:
 
 ## Emoji rules
 
-Allowed in: blog posts (sparingly), chatbot replies, the top bar.
+Allowed in: blog posts (sparingly), the top bar.
 **Never in:** headlines, buttons, page titles, meta descriptions.
 
 A ceilidh is warm. It isn't a text message.

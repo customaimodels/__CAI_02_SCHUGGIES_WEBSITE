@@ -61,27 +61,20 @@ and read the red text — it names the file and line number.
 
 ### The chat bubble vanished
 
-You almost certainly broke `chatbot.js` with a stray quote mark.
-
-```javascript
-a: "He said "brilliant""     ← breaks everything
-a: "He said 'brilliant'"     ← fine
-```
-
-F12 → Console will point at the line. Or undo the file and start again.
+It's meant to. The chatbot was removed on 2026-09-26. Nothing to fix.
 
 ---
 
 ### Footer links won't click
 
-The chat panel is invisible but still sitting on top of them. There's a specific
-CSS rule that prevents this:
+A floating button is sitting on top of them. The footer's reserved padding
+prevents this:
 
 ```css
-.cbot__panel[hidden] { display: none; }
+.site-footer { padding-bottom: max(6.5rem, calc(env(safe-area-inset-bottom) + 6rem)); }
 ```
 
-If someone deleted it, put it back. See `07-chatbot-and-floaters.md`.
+If someone trimmed it, put it back. See `07-chatbot-and-floaters.md`.
 
 ---
 
@@ -121,7 +114,8 @@ Back to normal. Then redo the change more carefully.
 
 ### The site is completely down
 
-Not your files — that's hosting. Check Railway's dashboard, then Cloudflare's.
+Not your files — that's hosting. Check Railway's dashboard, and whether
+`/api/health` answers `200`.
 Nothing in this folder will fix an outage.
 
 ---
